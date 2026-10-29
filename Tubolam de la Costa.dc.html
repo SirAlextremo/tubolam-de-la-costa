@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tubolam de la Costa SAS — Láminas, perfiles y tubería en acero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<meta name="ext-resource-dependency" content="assets/upvc-cresta-alta.webp" data-resource-id="p1" />
+<meta name="ext-resource-dependency" content="assets/upvc-cresta-baja.webp" data-resource-id="p2" />
+<meta name="ext-resource-dependency" content="assets/upvc-colonial.webp" data-resource-id="p3" />
+<meta name="ext-resource-dependency" content="assets/accesorios-upvc-cresta.webp" data-resource-id="p4" />
+<meta name="ext-resource-dependency" content="assets/accesorios-upvc-colonial.webp" data-resource-id="p5" />
+<meta name="ext-resource-dependency" content="assets/lamina-mastermil.webp" data-resource-id="p6" />
+<meta name="ext-resource-dependency" content="assets/lamina-arquitectonica.webp" data-resource-id="p7" />
+<meta name="ext-resource-dependency" content="assets/metaloza-galvalume.webp" data-resource-id="p8" />
+<meta name="ext-resource-dependency" content="assets/canuelas-galvalume.webp" data-resource-id="p9" />
+<meta name="ext-resource-dependency" content="assets/lamina-galvalume.webp" data-resource-id="p10" />
+<meta name="ext-resource-dependency" content="assets/perfiles-c.webp" data-resource-id="p11" />
+<meta name="ext-resource-dependency" content="assets/tuberia-acero.webp" data-resource-id="p12" />
+<template id="__bundler_thumbnail" data-bg-color="#1b2a6b">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120"><rect width="120" height="120" fill="#1b2a6b"></rect><g fill="none" stroke="#ffffff" stroke-width="4"><rect x="36" y="36" width="48" height="48" rx="2"></rect><path d="M36 60h48M60 36v48" stroke="#e0453a"></path></g></svg>
+</template>
+<style>
+  html, body { margin:0; padding:0; background:#ffffff; color:oklch(24% 0.02 260); font-family:'Albert Sans', system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:oklch(45% 0.20 260); text-decoration:none; }
+  a:hover { color:oklch(55% 0.22 27); }
+  img { display:block; }
+  input, select, textarea, button { font-family:inherit; }
+  @keyframes tl-rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+  @keyframes tl-fade { from { opacity:0; } to { opacity:1; } }
+  @keyframes tl-pulse { 0%,100% { box-shadow:0 0 0 0 oklch(55% 0.22 27 / 0.38); } 70% { box-shadow:0 0 0 16px oklch(55% 0.22 27 / 0); } }
+  @keyframes tl-pop { from { opacity:0; transform:translateY(-4px) scale(0.97); } to { opacity:1; transform:none; } }
+  @keyframes tl-hero-bg { from { transform:scale(1.06); } to { transform:scale(1); } }
+  @keyframes tl-page { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+  /* Easing y entrada escalonada del hero (primera impresión) */
+  :root { --tl-out: cubic-bezier(0.23,1,0.32,1); }
+  .tl-hero-bg { animation:tl-hero-bg 1400ms var(--tl-out) both; will-change:transform; }
+  .tl-hero > * { animation:tl-rise 560ms var(--tl-out) both; }
+  .tl-hero > :nth-child(1) { animation-delay:40ms; }
+  .tl-hero > :nth-child(2) { animation-delay:100ms; }
+  .tl-hero > :nth-child(3) { animation-delay:170ms; }
+  .tl-hero > :nth-child(4) { animation-delay:240ms; }
+  .tl-hero > :nth-child(5) { animation-delay:320ms; }
+
+  /* Cambio de pestaña: entrada corta del contenido */
+  .tl-page { animation:tl-page 280ms var(--tl-out) both; }
+
+  /* Aparición al hacer scroll (solo si el JS activó .tl-js; sin JS todo queda visible) */
+  /* fill-mode backwards: al terminar, los hover (translate/sombra) siguen funcionando */
+  @keyframes tl-reveal { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+  .tl-js [data-reveal]:not([data-in]) { opacity:0; }
+  .tl-js [data-reveal][data-in] { animation:tl-reveal 600ms var(--tl-out) backwards !important; }
+  .tl-js [data-reveal-group] > [data-reveal]:nth-child(3n+2) { animation-delay:70ms !important; }
+  .tl-js [data-reveal-group] > [data-reveal]:nth-child(3n+3) { animation-delay:140ms !important; }
+
+  /* Panel del chat: siempre montado, se anima con opacity/transform */
+  .tl-chat { transition:opacity 180ms ease, transform 240ms var(--tl-out), visibility 0s linear 240ms; }
+  .tl-chat[data-open="1"] { transition:opacity 180ms ease, transform 240ms var(--tl-out), visibility 0s; }
+
+  /* FAQ: acordeón con grid-rows (sin límite de altura que corte respuestas largas) */
+  .tl-acc { display:grid; transition:grid-template-rows 280ms var(--tl-out), opacity 200ms ease; }
+  .tl-acc > * { min-height:0; overflow:hidden; }
+
+
+  /* Botón WhatsApp: brillo suave al pasar */
+  @keyframes tl-dot { 0%,60%,100% { transform:translateY(0); opacity:.45; } 30% { transform:translateY(-4px); opacity:1; } }
+  .tl-typing { display:inline-flex; gap:5px; align-items:center; padding:14px 16px; background:#ffffff; border:1px solid oklch(88% 0.01 250); border-radius:10px 10px 10px 2px; animation:tl-rise 200ms var(--tl-out) both; }
+  .tl-typing i { width:7px; height:7px; border-radius:50%; background:oklch(55% 0.02 260); animation:tl-dot 1.1s ease-in-out infinite; }
+  .tl-typing i:nth-child(2) { animation-delay:.15s; } .tl-typing i:nth-child(3) { animation-delay:.3s; }
+  .tl-estado-dot { width:7px; height:7px; border-radius:50%; display:inline-block; margin-right:6px; vertical-align:1px; }
+
+  /* Celular: aprovechar el ancho, menos aire vertical */
+  @media (max-width: 640px) {
+    .tl-hero { padding:40px 16px 36px !important; }
+    .tl-hero > p:first-child { font-size:10.5px !important; letter-spacing:0.18em !important; margin-bottom:14px !important; }
+    .tl-h1 { font-size:35px !important; line-height:1.06 !important; margin-bottom:16px !important; }
+    .tl-lead { font-size:16.5px !important; line-height:1.6 !important; margin-bottom:24px !important; }
+    .tl-ctas { gap:10px !important; }
+    .tl-ctas > * { flex:1 1 100%; justify-content:center; text-align:center; padding:16px 18px !important; font-size:16px !important; }
+    .tl-stats { display:grid !important; grid-template-columns:1fr 1fr; gap:18px 14px !important; margin-top:30px !important; padding-top:20px !important; }
+    .tl-stats > :last-child { grid-column:1 / -1; }
+    .tl-stats > * > :first-child { font-size:27px !important; }
+    .tl-stats > * > :last-child { font-size:9.5px !important; letter-spacing:0.12em !important; }
+    .tl-sec { padding-left:16px !important; padding-right:16px !important; padding-top:44px !important; }
+    section.tl-sec:last-child { padding-bottom:56px !important; }
+    div.tl-sec { padding-bottom:44px !important; }
+    .tl-sec h2 { margin-bottom:18px !important; }
+    .tl-main { padding:36px 16px 64px !important; }
+    .tl-cardbody { padding:16px !important; }
+    .tl-filtros { flex-wrap:nowrap !important; overflow-x:auto; scrollbar-width:none; margin:0 -16px 22px !important; padding:0 16px 16px !important; scroll-snap-type:x proximity; }
+    .tl-filtros::-webkit-scrollbar { display:none; }
+    .tl-filtros > * { flex:0 0 auto; white-space:nowrap; scroll-snap-align:start; }
+    .tl-form { padding:20px 16px !important; }
+    .tl-foot { padding:32px 16px 96px !important; }
+    .tl-chatwrap { right:12px !important; bottom:12px !important; }
+    .tl-chat { width:calc(100vw - 24px) !important; height:min(560px, calc(100dvh - 96px)) !important; }
+  }
+
+
+  /* Anotaciones técnicas sobre las fotos */
+  @keyframes tl-draw { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+  @keyframes tl-chip-in { from { opacity:0; transform:translateX(-6px); } to { opacity:1; transform:none; } }
+  .tl-anot { position:absolute; inset:0; pointer-events:none; display:flex; flex-direction:column; justify-content:space-between; padding:12px; background:linear-gradient(180deg, oklch(18% 0.04 262 / 0.38) 0%, transparent 34%, transparent 58%, oklch(18% 0.04 262 / 0.62) 100%); }
+  .tl-chips { display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+  .tl-chip { display:inline-flex; align-items:center; gap:7px; background:oklch(100% 0 0 / 0.94); color:oklch(30% 0.13 262); font-family:'Roboto Mono', monospace; font-size:10.5px; font-weight:700; letter-spacing:0.08em; padding:6px 10px; border-radius:3px; box-shadow:0 4px 14px oklch(18% 0.04 262 / 0.22); animation:tl-chip-in 420ms var(--tl-out) 250ms both; }
+  .tl-chip b { width:7px; height:7px; border-radius:50%; background:oklch(55% 0.22 27); box-shadow:0 0 0 3px oklch(55% 0.22 27 / 0.22); }
+  .tl-chip2 { background:oklch(30% 0.13 262 / 0.9); color:#ffffff; animation-delay:340ms; }
+  .tl-cota { display:flex; align-items:center; color:#ffffff; gap:0; transform-origin:center; animation:tl-draw 600ms var(--tl-out) 300ms both; filter:drop-shadow(0 1px 2px oklch(10% 0.02 262 / 0.6)); }
+  .tl-cl { flex:1; height:2px; background:currentColor; }
+  .tl-ah { flex:0 0 auto; }
+  .tl-ctx { flex:0 0 auto; margin:0 8px; font-family:'Roboto Mono', monospace; font-size:11px; font-weight:700; letter-spacing:0.08em; background:oklch(55% 0.22 27); color:#ffffff; padding:5px 9px; border-radius:3px; white-space:nowrap; }
+  .tl-js [data-reveal]:not([data-in]) .tl-chip, .tl-js [data-reveal]:not([data-in]) .tl-cota { animation:none; }
+  @media (max-width: 640px) { .tl-anot { padding:10px; } .tl-chip { font-size:9.5px; padding:5px 8px; } .tl-ctx { font-size:10px; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; transition-delay:0s !important; }
+    .tl-js [data-reveal] { transform:none; }
+  }
+</style>
+</helmet>
+
+<div style="min-height:100vh; background:#ffffff;">
+
+  <div style="background:oklch(30% 0.13 262); color:#ffffff;">
+    <div style="{{ franjaStyle }}">
+      <span>DESPACHOS A TODA COLOMBIA · CORTES A LA MEDIDA</span>
+      <sc-if value="{{ esEscritorio }}" hint-placeholder-val="{{ true }}">
+        <span>LUN A VIE 8:00 A.M. – 12:00 M. Y 1:00 – 5:00 P.M.</span>
+      </sc-if>
+    </div>
+  </div>
+
+  <header style="position:sticky; top:0; z-index:50; background:oklch(100% 0 0 / 0.94); backdrop-filter:blur(12px); border-bottom:2px solid oklch(30% 0.13 262);">
+    <div style="max-width:1240px; margin:0 auto; padding:8px 14px; display:flex; align-items:center; gap:10px;">
+      <a href="#" onClick="{{ irInicio }}" style="display:flex; align-items:center; gap:10px; flex:1 1 auto; min-width:0;">
+        <img src="assets/logo-tubolam.png" alt="Tubolam de la Costa SAS" style="{{ logoStyle }}" />
+        <span style="display:flex; flex-direction:column; line-height:1; min-width:0;">
+          <span style="{{ marcaStyle }}">TUBOLAM</span>
+          <span style="{{ marcaSubStyle }}">DE LA COSTA SAS</span>
+        </span>
+      </a>
+
+      <sc-if value="{{ esEscritorio }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex; gap:4px; flex-wrap:wrap;">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+            <button onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</button>
+          </sc-for>
+        </nav>
+      </sc-if>
+
+      <sc-if value="{{ esEscritorio }}" hint-placeholder-val="{{ true }}">
+        <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; flex:0 0 auto; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:13px 20px; border-radius:4px; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar por WhatsApp</span></a>
+      </sc-if>
+
+      <sc-if value="{{ esMovil }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:0 0 auto; position:relative;">
+          <button onClick="{{ toggleMenu }}" aria-label="Secciones" style="{{ menuBotonStyle }}">
+            <span style="font-size:13.5px; font-weight:700; white-space:nowrap;">{{ menuEtiqueta }}</span>
+            <span style="{{ menuIconoStyle }}">
+              <svg width="11" height="7" viewBox="0 0 11 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 5.5 5.5 10 1.5"></path></svg>
+            </span>
+          </button>
+
+          <sc-if value="{{ menuAbierto }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; top:calc(100% + 8px); right:0; z-index:70; min-width:206px; background:#ffffff; border:1px solid oklch(88% 0.01 250); border-radius:6px; box-shadow:0 18px 42px oklch(30% 0.13 262 / 0.20); overflow:hidden; display:flex; flex-direction:column; transform-origin:top right; animation:tl-pop 180ms cubic-bezier(0.23,1,0.32,1) both;">
+              <sc-for list="{{ tabsMovil }}" as="t" hint-placeholder-count="5">
+                <button onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</button>
+              </sc-for>
+              <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; text-align:center; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:14.5px; padding:13px 16px;" style-hover="background:oklch(45% 0.14 150); color:#ffffff"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar por WhatsApp</span></a>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+    </div>
+  </header>
+
+  <sc-if value="{{ esInicio }}" hint-placeholder-val="{{ true }}">
+    <main class="tl-page">
+      <section style="position:relative; overflow:hidden; border-bottom:1px solid oklch(88% 0.01 250);">
+        <div class="tl-hero-bg" style="position:absolute; inset:0; background-image:url('assets/upvc-cresta-alta.webp'); background-size:cover; background-position:center;"></div>
+        <div style="position:absolute; inset:0; background:linear-gradient(95deg, oklch(100% 0 0) 30%, oklch(100% 0 0 / 0.90) 52%, oklch(100% 0 0 / 0.35) 100%);"></div>
+        <div class="tl-hero" style="position:relative; max-width:1240px; margin:0 auto; padding:88px 20px 80px;">
+          <p style="font-family:'Roboto Mono', monospace; font-size:12px; font-weight:600; letter-spacing:0.24em; color:oklch(55% 0.22 27); margin:0 0 20px;">LÁMINAS · PERFILES · TUBERÍA EN ACERO</p>
+          <h1 class="tl-h1" style="font-size:clamp(40px, 6.2vw, 76px); font-weight:800; line-height:1.02; letter-spacing:-0.025em; margin:0 0 24px; max-width:17ch; color:oklch(24% 0.02 260);">Material de cubierta y acero, despachado a toda Colombia.</h1>
+          <p class="tl-lead" style="font-size:19px; line-height:1.65; color:oklch(42% 0.015 260); max-width:58ch; margin:0 0 34px; text-wrap:pretty; font-weight:500;">UPVC anticorrosivo para clima salino, galvalume y prepintada calibre 33 a 24, perfiles C y tubería con costura de 2" a 42". Cortamos a la medida exacta de tu obra.</p>
+          <div class="tl-ctas" style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:17px; padding:17px 30px; border-radius:4px; box-shadow:0 12px 30px oklch(52% 0.15 150 / 0.24); transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Pedir cotización por WhatsApp</span></a>
+            <button onClick="{{ verCatalogo }}" style="background:oklch(30% 0.13 262); color:#ffffff; font-weight:700; font-size:17px; padding:17px 30px; border:none; border-radius:4px; cursor:pointer; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(38% 0.16 262)" style-active="transform:scale(0.97)">Ver catálogo completo</button>
+          </div>
+          <div class="tl-stats" style="display:flex; flex-wrap:wrap; gap:28px 56px; margin-top:56px; padding-top:26px; border-top:3px solid oklch(30% 0.13 262);">
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <span style="font-size:38px; font-weight:800; line-height:1; color:oklch(30% 0.13 262); letter-spacing:-0.02em;">2" a 42"</span>
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.16em; color:oklch(48% 0.015 260);">DIÁMETROS DE TUBERÍA</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <span style="font-size:38px; font-weight:800; line-height:1; color:oklch(30% 0.13 262); letter-spacing:-0.02em;">11.80 m</span>
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.16em; color:oklch(48% 0.015 260);">LARGO ESTÁNDAR UPVC</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <span style="font-size:38px; font-weight:800; line-height:1; color:oklch(55% 0.22 27); letter-spacing:-0.02em;">A la medida</span>
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.16em; color:oklch(48% 0.015 260);">CORTES Y LARGOS ESPECIALES</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tl-sec" style="max-width:1240px; margin:0 auto; padding:76px 20px 20px;">
+        <h2 data-reveal style="font-size:clamp(34px, 4.4vw, 48px); font-weight:800; line-height:1.05; letter-spacing:-0.02em; margin:0 0 28px; color:oklch(24% 0.02 260);">Tubería en acero al carbono</h2>
+        <div data-reveal-group style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:28px; margin-bottom:22px; align-items:stretch;">
+          <article data-reveal style="background:#ffffff; border:2px solid oklch(45% 0.20 260); border-radius:6px; overflow:hidden; display:flex; flex-direction:column;">
+            <div style="aspect-ratio:4/3; overflow:hidden; background:oklch(96% 0.004 250); position:relative;">
+              <img src="assets/tuberia-acero.webp" alt="Tubería con costura" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 420ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.05)" />
+              <span style="position:absolute; top:10px; right:10px; background:oklch(45% 0.20 260); color:#ffffff; font-family:'Roboto Mono', monospace; font-size:10px; font-weight:700; padding:6px 12px; border-radius:3px; letter-spacing:0.08em;">BESTSELLER</span>
+              <div class="tl-anot" aria-hidden="true">
+                <div class="tl-chips">
+                <span class="tl-chip"><b></b>SCH 10 – XXS</span>
+                <span class="tl-chip tl-chip2">LARGO 6 A 12 m</span>
+                </div>
+                <div class="tl-cota"><svg class="tl-ah" width="9" height="12" viewBox="0 0 9 12" aria-hidden="true"><path d="M8 1 2 6l6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1 0v12" stroke="currentColor" stroke-width="2"></path></svg><span class="tl-cl"></span><span class="tl-ctx">Ø 2" A 42"</span><span class="tl-cl"></span><svg class="tl-ah" width="9" height="12" viewBox="0 0 9 12" aria-hidden="true"><path d="M1 1l6 5-6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 0v12" stroke="currentColor" stroke-width="2"></path></svg></div>
+              </div>
+            </div>
+            <div style="padding:24px; flex:1; display:flex; flex-direction:column;">
+              <h3 style="font-size:20px; font-weight:700; margin:0 0 12px; color:oklch(24% 0.02 260);">Tubería con costura</h3>
+              <p style="font-size:15px; line-height:1.6; color:oklch(45% 0.015 260); margin:0 0 20px; flex:1;">Soldada de alta calidad para baja y media presión, conducción general y estructura. Disponible en diámetros 2" a 42".</p>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px 16px; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid oklch(88% 0.01 250);">
+                <div style="display:flex; flex-direction:column; gap:4px;"><span style="font-family:'Roboto Mono', monospace; font-size:10px; font-weight:600; letter-spacing:0.08em; color:oklch(45% 0.015 260);">DIÁMETROS</span><span style="font-size:16px; font-weight:700; color:oklch(24% 0.02 260);">2" a 42"</span></div>
+                <div style="display:flex; flex-direction:column; gap:4px;"><span style="font-family:'Roboto Mono', monospace; font-size:10px; font-weight:600; letter-spacing:0.08em; color:oklch(45% 0.015 260);">SCHEDULES</span><span style="font-size:16px; font-weight:700; color:oklch(24% 0.02 260);">SCH 10-XXS</span></div>
+              </div>
+              <a href="{{ waTuberiaCostura }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:14px 16px; border-radius:3px; text-align:center; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(52% 0.15 150)" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar tubería con costura</span></a>
+            </div>
+          </article>
+          <div data-reveal style="display:flex; flex-direction:column; gap:1px; background:oklch(88% 0.01 250); border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden;">
+            <div style="background:oklch(98% 0.003 250); padding:24px; border-left:5px solid oklch(30% 0.13 262); flex:1;">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.16em; color:oklch(45% 0.20 260);">SCHEDULES</span>
+              <h3 style="font-size:19px; font-weight:700; margin:10px 0 8px; color:oklch(24% 0.02 260);">SCH 10 hasta XXS</h3>
+              <p style="font-size:15px; line-height:1.65; color:oklch(45% 0.015 260); margin:0;">Danos diámetro, schedule y cantidad de metros. Largos de 6 a 12 m y cortes a la medida del despiece.</p>
+            </div>
+            <div style="background:oklch(98% 0.003 250); padding:24px; border-left:5px solid oklch(55% 0.22 27); flex:1;">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.16em; color:oklch(55% 0.22 27);">BAJO PEDIDO</span>
+              <h3 style="font-size:19px; font-weight:700; margin:10px 0 8px; color:oklch(24% 0.02 260);">Tubería sin costura</h3>
+              <p style="font-size:15px; line-height:1.65; color:oklch(45% 0.015 260); margin:0 0 16px;">No es línea de inventario, pero si tu proyecto la exige la conseguimos. Pregúntanos por diámetro y schedule.</p>
+              <a href="{{ waTuberiaSin }}" target="_blank" rel="noopener" style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(44% 0.13 150);" style-hover="color:oklch(30% 0.13 262)">CONSULTAR DISPONIBILIDAD →</a>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:15px; line-height:1.65; color:oklch(45% 0.015 260); margin:0 0 62px; max-width:70ch;">La línea de inventario es tubería con costura. Codos, bridas y válvulas se cotizan por separado según el proyecto.</p>
+
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:30px;">
+          <h2 style="font-size:clamp(32px, 4.2vw, 46px); font-weight:800; line-height:1.05; letter-spacing:-0.02em; margin:0; color:oklch(24% 0.02 260);">Lo más pedido</h2>
+          <button onClick="{{ verCatalogo }}" style="background:none; border:none; padding:0; cursor:pointer; font-family:'Roboto Mono', monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; color:oklch(45% 0.20 260);" style-hover="color:oklch(55% 0.22 27)">VER TODO EL CATÁLOGO →</button>
+        </div>
+        <div data-reveal-group style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap:20px;">
+          <sc-for list="{{ destacados }}" as="p" hint-placeholder-count="6">
+            <article data-reveal style="background:#ffffff; border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden; display:flex; flex-direction:column; transition:border-color 200ms ease, box-shadow 200ms ease, transform 200ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="border-color:oklch(45% 0.20 260); box-shadow:0 14px 34px oklch(30% 0.13 262 / 0.12); transform:translateY(-3px)">
+              <div style="aspect-ratio:4/3; overflow:hidden; background:oklch(96% 0.004 250); position:relative;">
+                <img src="{{ p.img }}" alt="{{ p.nombre }}" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 420ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.05)" />
+                <div class="tl-anot" aria-hidden="true">
+                  <div class="tl-chips">
+                  <sc-if value="{{ p.chip }}" hint-placeholder-val="{{ true }}"><span class="tl-chip"><b></b>{{ p.chip }}</span></sc-if>
+                  <sc-if value="{{ p.chip2 }}" hint-placeholder-val="{{ true }}"><span class="tl-chip tl-chip2">{{ p.chip2 }}</span></sc-if>
+                  </div>
+                  <sc-if value="{{ p.cota }}" hint-placeholder-val="{{ true }}"><div class="tl-cota"><svg class="tl-ah" width="9" height="12" viewBox="0 0 9 12" aria-hidden="true"><path d="M8 1 2 6l6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1 0v12" stroke="currentColor" stroke-width="2"></path></svg><span class="tl-cl"></span><span class="tl-ctx">{{ p.cota }}</span><span class="tl-cl"></span><svg class="tl-ah" width="9" height="12" viewBox="0 0 9 12" aria-hidden="true"><path d="M1 1l6 5-6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 0v12" stroke="currentColor" stroke-width="2"></path></svg></div></sc-if>
+                </div>
+              </div>
+              <div class="tl-cardbody" style="padding:20px 20px 22px; display:flex; flex-direction:column; gap:10px; flex:1; border-top:3px solid oklch(55% 0.22 27);">
+                <span style="font-family:'Roboto Mono', monospace; font-size:10px; font-weight:600; letter-spacing:0.18em; color:oklch(45% 0.20 260);">{{ p.catLabel }}</span>
+                <h3 style="font-size:20px; font-weight:700; margin:0; line-height:1.25; color:oklch(24% 0.02 260); letter-spacing:-0.01em;">{{ p.nombre }}</h3>
+                <p style="font-size:15px; line-height:1.6; color:oklch(45% 0.015 260); margin:0 0 4px;">{{ p.resumen }}</p>
+                <a href="{{ p.wa }}" target="_blank" rel="noopener" style="margin-top:auto; font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(44% 0.13 150); border-top:1px solid oklch(88% 0.01 250); padding-top:14px;" style-hover="color:oklch(30% 0.13 262)">COTIZAR ESTE PRODUCTO →</a>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="background:oklch(97% 0.004 250); border-top:1px solid oklch(88% 0.01 250); border-bottom:1px solid oklch(88% 0.01 250);">
+        <div class="tl-sec" style="max-width:1240px; margin:0 auto; padding:72px 20px;">
+          <div data-reveal><p style="font-family:'Roboto Mono', monospace; font-size:12px; font-weight:600; letter-spacing:0.24em; color:oklch(55% 0.22 27); margin:0 0 14px;">EMPRESAS ALIADAS</p>
+          <h2 style="font-size:clamp(30px, 4.2vw, 46px); font-weight:800; line-height:1.05; letter-spacing:-0.02em; margin:0 0 16px; color:oklch(24% 0.02 260);">Trabajamos con empresas aliadas</h2>
+          <p style="font-size:17.5px; line-height:1.7; color:oklch(42% 0.015 260); max-width:64ch; margin:0 0 36px; font-weight:500;">Cotizas con Tubolam de la Costa y detrás respaldan Comercializadora Todo Hierros y Materiales FM. Un solo canal de atención, más inventario disponible.</p></div>
+          <div data-reveal-group style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap:20px;">
+            <div data-reveal style="background:#ffffff; border:1px solid oklch(88% 0.01 250); border-top:4px solid oklch(55% 0.22 27); border-radius:6px; padding:24px; display:flex; flex-direction:column; gap:16px;">
+              <div style="height:66px; display:flex; align-items:center;">
+                <img src="assets/logo-tubolam.png" alt="Tubolam de la Costa SAS" loading="lazy" style="max-width:100%; max-height:66px; object-fit:contain;" />
+              </div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <span style="font-family:'Roboto Mono', monospace; font-size:10px; font-weight:600; letter-spacing:0.18em; color:oklch(55% 0.22 27);">TU PUNTO DE CONTACTO</span>
+                <h3 style="font-size:18px; font-weight:700; margin:0; color:oklch(24% 0.02 260);">Tubolam de la Costa SAS</h3>
+                <p style="font-size:15px; line-height:1.6; color:oklch(45% 0.015 260); margin:0;">Láminas, perfilería y tubería en acero, con despacho a toda Colombia.</p>
+              </div>
+            </div>
+            <div data-reveal style="background:#ffffff; border:1px solid oklch(88% 0.01 250); border-top:4px solid oklch(30% 0.13 262); border-radius:6px; padding:24px; display:flex; flex-direction:column; gap:16px;">
+              <div style="height:66px; display:flex; align-items:center;">
+                <img src="assets/logo-todo-hierros.png" alt="Comercializadora Todo Hierros S.A.S" loading="lazy" style="max-width:100%; max-height:52px; object-fit:contain;" />
+              </div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <span style="font-family:'Roboto Mono', monospace; font-size:10px; font-weight:600; letter-spacing:0.18em; color:oklch(45% 0.20 260);">ALIADA</span>
+                <h3 style="font-size:18px; font-weight:700; margin:0; color:oklch(24% 0.02 260);">Comercializadora Todo Hierros S.A.S</h3>
+                <p style="font-size:15px; line-height:1.6; color:oklch(45% 0.015 260); margin:0;">Suministro de hierro y acero para obra y proyectos de volumen.</p>
+              </div>
+            </div>
+            <div data-reveal style="background:#ffffff; border:1px solid oklch(88% 0.01 250); border-top:4px solid oklch(30% 0.13 262); border-radius:6px; padding:24px; display:flex; flex-direction:column; gap:16px;">
+              <div style="height:66px; display:flex; align-items:center;">
+                <img src="assets/logo-fm.png" alt="Materiales FM" loading="lazy" style="max-width:100%; max-height:66px; object-fit:contain;" />
+              </div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <span style="font-family:'Roboto Mono', monospace; font-size:10px; font-weight:600; letter-spacing:0.18em; color:oklch(45% 0.20 260);">ALIADA</span>
+                <h3 style="font-size:18px; font-weight:700; margin:0; color:oklch(24% 0.02 260);">Materiales FM</h3>
+                <p style="font-size:15px; line-height:1.6; color:oklch(45% 0.015 260); margin:0;">Materiales de construcción y ferretería para el cliente de mostrador.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tl-sec" style="max-width:1240px; margin:0 auto; padding:68px 20px 92px;">
+        <div data-reveal style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap:1px; background:oklch(88% 0.01 250); border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden;">
+          <div style="background:oklch(98% 0.003 250); padding:30px 26px; border-top:4px solid oklch(30% 0.13 262);">
+            <h3 style="font-size:18px; font-weight:700; margin:0 0 10px; color:oklch(24% 0.02 260);">Corte a la medida</h3>
+            <p style="font-size:15px; line-height:1.65; color:oklch(45% 0.015 260); margin:0;">Largos, anchos y perforaciones según el plano. No pagas material que no vas a usar.</p>
+          </div>
+          <div style="background:oklch(98% 0.003 250); padding:30px 26px; border-top:4px solid oklch(55% 0.22 27);">
+            <h3 style="font-size:18px; font-weight:700; margin:0 0 10px; color:oklch(24% 0.02 260);">Pensado para clima salino</h3>
+            <p style="font-size:15px; line-height:1.65; color:oklch(45% 0.015 260); margin:0;">UPVC y galvalume con accesorios anticorrosión: la cubierta aguanta la brisa del Caribe.</p>
+          </div>
+          <div style="background:oklch(98% 0.003 250); padding:30px 26px; border-top:4px solid oklch(30% 0.13 262);">
+            <h3 style="font-size:18px; font-weight:700; margin:0 0 10px; color:oklch(24% 0.02 260);">Despacho a toda Colombia</h3>
+            <p style="font-size:15px; line-height:1.65; color:oklch(45% 0.015 260); margin:0;">Coordinamos flete desde la Costa hasta la obra, en volumen de ferretería o de proyecto.</p>
+          </div>
+          <div style="background:oklch(98% 0.003 250); padding:30px 26px; border-top:4px solid oklch(55% 0.22 27);">
+            <h3 style="font-size:18px; font-weight:700; margin:0 0 10px; color:oklch(24% 0.02 260);">Asesoría técnica</h3>
+            <p style="font-size:15px; line-height:1.65; color:oklch(45% 0.015 260); margin:0;">Te decimos calibre, schedule y cantidad de accesorios antes de que compres de más.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ esCatalogo }}" hint-placeholder-val="{{ true }}">
+    <main class="tl-page tl-main" style="max-width:1240px; margin:0 auto; padding:60px 20px 92px;">
+      <p style="font-family:'Roboto Mono', monospace; font-size:12px; font-weight:600; letter-spacing:0.24em; color:oklch(55% 0.22 27); margin:0 0 14px;">CATÁLOGO 2026</p>
+      <h2 style="font-size:clamp(34px, 4.8vw, 54px); font-weight:800; line-height:1.03; letter-spacing:-0.025em; margin:0 0 16px; color:oklch(24% 0.02 260);">Todo el material, con ficha técnica</h2>
+      <p style="font-size:18px; line-height:1.65; color:oklch(45% 0.015 260); max-width:60ch; margin:0 0 32px; font-weight:500;">Medidas estándar abajo. Cualquier referencia sale en largo especial bajo pedido.</p>
+
+      <div class="tl-filtros" style="display:flex; gap:8px; flex-wrap:wrap; padding-bottom:24px; border-bottom:2px solid oklch(88% 0.01 250); margin-bottom:32px;">
+        <sc-for list="{{ filtros }}" as="f" hint-placeholder-count="4">
+          <button onClick="{{ f.go }}" style="{{ f.style }}" style-active="transform:scale(0.97)">{{ f.label }}</button>
+        </sc-for>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap:22px;">
+        <sc-for list="{{ productosVisibles }}" as="p" hint-placeholder-count="8">
+          <article style="background:#ffffff; border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden; display:flex; flex-direction:column; animation:tl-rise 480ms cubic-bezier(0.23,1,0.32,1) both; transition:border-color 200ms ease, box-shadow 200ms ease;" style-hover="border-color:oklch(45% 0.20 260); box-shadow:0 14px 34px oklch(30% 0.13 262 / 0.12)">
+            <div style="aspect-ratio:16/10; overflow:hidden; background:oklch(96% 0.004 250); position:relative;">
+              <img src="{{ p.img }}" alt="{{ p.nombre }}" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 420ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.05)" />
+              <div class="tl-anot" aria-hidden="true">
+                <div class="tl-chips">
+                <sc-if value="{{ p.chip }}" hint-placeholder-val="{{ true }}"><span class="tl-chip"><b></b>{{ p.chip }}</span></sc-if>
+                <sc-if value="{{ p.chip2 }}" hint-placeholder-val="{{ true }}"><span class="tl-chip tl-chip2">{{ p.chip2 }}</span></sc-if>
+                </div>
+                <sc-if value="{{ p.cota }}" hint-placeholder-val="{{ true }}"><div class="tl-cota"><svg class="tl-ah" width="9" height="12" viewBox="0 0 9 12" aria-hidden="true"><path d="M8 1 2 6l6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1 0v12" stroke="currentColor" stroke-width="2"></path></svg><span class="tl-cl"></span><span class="tl-ctx">{{ p.cota }}</span><span class="tl-cl"></span><svg class="tl-ah" width="9" height="12" viewBox="0 0 9 12" aria-hidden="true"><path d="M1 1l6 5-6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 0v12" stroke="currentColor" stroke-width="2"></path></svg></div></sc-if>
+              </div>
+            </div>
+            <div class="tl-cardbody" style="padding:22px; display:flex; flex-direction:column; gap:12px; flex:1; border-top:3px solid oklch(30% 0.13 262);">
+              <span style="font-family:'Roboto Mono', monospace; font-size:10px; font-weight:600; letter-spacing:0.18em; color:oklch(45% 0.20 260);">{{ p.catLabel }}</span>
+              <h3 style="font-size:21px; font-weight:700; margin:0; line-height:1.25; color:oklch(24% 0.02 260); letter-spacing:-0.01em;">{{ p.nombre }}</h3>
+              <p style="font-size:15px; line-height:1.6; color:oklch(45% 0.015 260); margin:0;">{{ p.resumen }}</p>
+              <dl style="margin:6px 0 0; display:flex; flex-direction:column; gap:0; border-top:1px solid oklch(88% 0.01 250);">
+                <sc-for list="{{ p.specs }}" as="s" hint-placeholder-count="4">
+                  <div style="display:flex; gap:14px; justify-content:space-between; padding:10px 0; border-bottom:1px solid oklch(92% 0.006 250);">
+                    <dt style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.06em; color:oklch(52% 0.015 260); flex:0 0 auto;">{{ s.k }}</dt>
+                    <dd style="margin:0; font-size:14.5px; font-weight:600; line-height:1.45; color:oklch(26% 0.02 260); text-align:right;">{{ s.v }}</dd>
+                  </div>
+                </sc-for>
+              </dl>
+              <a href="{{ p.wa }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; margin-top:auto; text-align:center; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:14px 18px; border-radius:4px; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar por WhatsApp</span></a>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ esNosotros }}" hint-placeholder-val="{{ true }}">
+    <main class="tl-page tl-main" style="max-width:1240px; margin:0 auto; padding:60px 20px 92px;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap:56px; align-items:start;">
+        <div>
+          <p style="font-family:'Roboto Mono', monospace; font-size:12px; font-weight:600; letter-spacing:0.24em; color:oklch(55% 0.22 27); margin:0 0 14px;">QUIÉNES SOMOS</p>
+          <h2 style="font-size:clamp(32px, 4.6vw, 52px); font-weight:800; line-height:1.04; letter-spacing:-0.025em; margin:0 0 22px; color:oklch(24% 0.02 260);">Distribuimos acero para obra, sin vueltas.</h2>
+          <p style="font-size:17.5px; line-height:1.75; color:oklch(42% 0.015 260); margin:0 0 18px; max-width:60ch;">Tubolam de la Costa SAS abastece constructoras, industria, ferreterías y clientes que están levantando su propio techo. Manejamos tres líneas: cubierta UPVC, lámina y perfilería en acero, y tubería en acero al carbono. Trabajamos de la mano con Comercializadora Todo Hierros S.A.S y Materiales FM, nuestras empresas aliadas.</p>
+          <p style="font-size:17.5px; line-height:1.75; color:oklch(42% 0.015 260); margin:0 0 18px; max-width:60ch;">Trabajamos en la Costa, donde la sal se come el material barato. Por eso la línea principal es UPVC y galvalume, y por eso insistimos en accesorios de fijación anticorrosión aunque encarezcan un poco la lista.</p>
+          <p style="font-size:17.5px; line-height:1.75; color:oklch(42% 0.015 260); margin:0; max-width:60ch;">Pasas medidas, te devolvemos cantidades y precio. Si el corte especial te ahorra material, te lo decimos.</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1px; background:oklch(88% 0.01 250); border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden;">
+          <div style="background:oklch(98% 0.003 250); padding:26px; border-left:5px solid oklch(30% 0.13 262);">
+            <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.18em; color:oklch(45% 0.20 260);">LÍNEA 01</span>
+            <h3 style="font-size:19px; font-weight:700; margin:10px 0 8px; color:oklch(24% 0.02 260);">Cubierta UPVC</h3>
+            <p style="font-size:15px; line-height:1.65; color:oklch(45% 0.015 260); margin:0;">Cresta alta, cresta baja, colonial española y todos los accesorios de instalación.</p>
+          </div>
+          <div style="background:oklch(98% 0.003 250); padding:26px; border-left:5px solid oklch(55% 0.22 27);">
+            <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.18em; color:oklch(55% 0.22 27);">LÍNEA 02</span>
+            <h3 style="font-size:19px; font-weight:700; margin:10px 0 8px; color:oklch(24% 0.02 260);">Lámina y perfilería</h3>
+            <p style="font-size:15px; line-height:1.65; color:oklch(45% 0.015 260); margin:0;">Galvalume, prepintada Mastermil y arquitectónica, Metal-Losa, cañuelas y perfiles C.</p>
+          </div>
+          <div style="background:oklch(98% 0.003 250); padding:26px; border-left:5px solid oklch(60% 0.01 250);">
+            <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.18em; color:oklch(45% 0.20 260);">LÍNEA 03</span>
+            <h3 style="font-size:19px; font-weight:700; margin:10px 0 8px; color:oklch(24% 0.02 260);">Tubería en acero al carbono</h3>
+            <p style="font-size:15px; line-height:1.65; color:oklch(45% 0.015 260); margin:0;">Con costura de 2" a 42", SCH 10 hasta XXS. Sin costura bajo pedido especial.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ esFaq }}" hint-placeholder-val="{{ true }}">
+    <main class="tl-page tl-main" style="max-width:880px; margin:0 auto; padding:60px 20px 92px;">
+      <p style="font-family:'Roboto Mono', monospace; font-size:12px; font-weight:600; letter-spacing:0.24em; color:oklch(55% 0.22 27); margin:0 0 14px;">PREGUNTAS FRECUENTES</p>
+      <h2 style="font-size:clamp(32px, 4.6vw, 52px); font-weight:800; line-height:1.04; letter-spacing:-0.025em; margin:0 0 32px; color:oklch(24% 0.02 260);">Lo que preguntan antes de comprar</h2>
+      <div style="display:flex; flex-direction:column; gap:1px; background:oklch(88% 0.01 250); border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden;">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+          <div style="background:#ffffff;">
+            <button onClick="{{ f.toggle }}" style="width:100%; background:none; border:none; text-align:left; cursor:pointer; padding:22px 24px; display:flex; gap:20px; align-items:center; justify-content:space-between; color:oklch(24% 0.02 260); font-size:18px; font-weight:700; transition:color 160ms ease;" style-hover="color:oklch(45% 0.20 260)">
+              <span>{{ f.q }}</span>
+              <span style="{{ f.iconStyle }}">+</span>
+            </button>
+            <div class="tl-acc" style="{{ f.panelStyle }}">
+              <p style="margin:0; padding:0 24px 24px; font-size:16px; line-height:1.75; color:oklch(45% 0.015 260); max-width:68ch;">{{ f.a }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ esContacto }}" hint-placeholder-val="{{ true }}">
+    <main class="tl-page tl-main" style="max-width:1240px; margin:0 auto; padding:60px 20px 92px;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap:52px; align-items:start;">
+        <div>
+          <p style="font-family:'Roboto Mono', monospace; font-size:12px; font-weight:600; letter-spacing:0.24em; color:oklch(55% 0.22 27); margin:0 0 14px;">CONTACTO</p>
+          <h2 style="font-size:clamp(32px, 4.6vw, 52px); font-weight:800; line-height:1.04; letter-spacing:-0.025em; margin:0 0 20px; color:oklch(24% 0.02 260);">Pide tu cotización</h2>
+          <p style="font-size:17.5px; line-height:1.7; color:oklch(42% 0.015 260); margin:0 0 30px; max-width:54ch;">Danos producto, cantidad y medidas. Respondemos con precio, disponibilidad y tiempo de despacho.</p>
+          <div style="display:flex; flex-direction:column; gap:1px; background:oklch(88% 0.01 250); border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden;">
+            <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="background:oklch(98% 0.003 250); padding:22px 24px; display:flex; flex-direction:column; gap:6px; border-left:5px solid oklch(52% 0.15 150); transition:background 160ms ease;" style-hover="background:oklch(95% 0.006 250)">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.18em; color:oklch(52% 0.015 260);">WHATSAPP</span>
+              <span style="font-size:20px; color:oklch(44% 0.13 150); font-weight:800;">{{ telFormateado }}</span>
+            </a>
+            <a href="{{ mailtoDirecto }}" style="background:oklch(98% 0.003 250); padding:22px 24px; display:flex; flex-direction:column; gap:6px; border-left:5px solid oklch(30% 0.13 262); transition:background 160ms ease;" style-hover="background:oklch(95% 0.006 250)">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.18em; color:oklch(52% 0.015 260);">CORREO</span>
+              <span style="font-size:17px; color:oklch(30% 0.13 262); font-weight:600; word-break:break-all;">{{ correo }}</span>
+            </a>
+            <div style="background:oklch(98% 0.003 250); padding:22px 24px; display:flex; flex-direction:column; gap:6px; border-left:5px solid oklch(60% 0.01 250);">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.18em; color:oklch(52% 0.015 260);">COBERTURA</span>
+              <span style="font-size:16.5px; color:oklch(26% 0.02 260); line-height:1.5; font-weight:500;">Despachos a toda Colombia desde la Costa Caribe.</span>
+            </div>
+            <div style="background:oklch(98% 0.003 250); padding:22px 24px; display:flex; flex-direction:column; gap:6px; border-left:5px solid oklch(60% 0.01 250);">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.18em; color:oklch(52% 0.015 260);">HORARIO</span>
+              <span style="font-size:16.5px; color:oklch(26% 0.02 260); line-height:1.5; font-weight:500;">Lunes a viernes 8:00 a.m. – 12:00 m. y 1:00 p.m. – 5:00 p.m.</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="tl-form" onSubmit="{{ enviarFormulario }}" style="background:oklch(98% 0.003 250); border:1px solid oklch(88% 0.01 250); border-top:5px solid oklch(30% 0.13 262); border-radius:6px; padding:30px; display:flex; flex-direction:column; gap:18px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:18px;">
+            <label style="display:flex; flex-direction:column; gap:8px;">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(42% 0.015 260);">NOMBRE *</span>
+              <input name="nombre" required="required" placeholder="Nombre y apellido" style="background:#ffffff; border:1px solid oklch(84% 0.012 250); border-radius:4px; padding:13px 14px; color:oklch(24% 0.02 260); font-size:16px; outline:none; transition:border-color 160ms ease, box-shadow 160ms ease;" style-focus="border-color:oklch(45% 0.20 260); box-shadow:0 0 0 3px oklch(45% 0.20 260 / 0.14)" />
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px;">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(42% 0.015 260);">EMPRESA</span>
+              <input name="empresa" placeholder="Opcional" style="background:#ffffff; border:1px solid oklch(84% 0.012 250); border-radius:4px; padding:13px 14px; color:oklch(24% 0.02 260); font-size:16px; outline:none; transition:border-color 160ms ease, box-shadow 160ms ease;" style-focus="border-color:oklch(45% 0.20 260); box-shadow:0 0 0 3px oklch(45% 0.20 260 / 0.14)" />
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px;">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(42% 0.015 260);">CORREO *</span>
+              <input name="correo" type="email" required="required" placeholder="tucorreo@dominio.com" style="background:#ffffff; border:1px solid oklch(84% 0.012 250); border-radius:4px; padding:13px 14px; color:oklch(24% 0.02 260); font-size:16px; outline:none; transition:border-color 160ms ease, box-shadow 160ms ease;" style-focus="border-color:oklch(45% 0.20 260); box-shadow:0 0 0 3px oklch(45% 0.20 260 / 0.14)" />
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px;">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(42% 0.015 260);">TELÉFONO *</span>
+              <input name="telefono" required="required" placeholder="300 000 0000" style="background:#ffffff; border:1px solid oklch(84% 0.012 250); border-radius:4px; padding:13px 14px; color:oklch(24% 0.02 260); font-size:16px; outline:none; transition:border-color 160ms ease, box-shadow 160ms ease;" style-focus="border-color:oklch(45% 0.20 260); box-shadow:0 0 0 3px oklch(45% 0.20 260 / 0.14)" />
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px;">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(42% 0.015 260);">CIUDAD *</span>
+              <input name="ciudad" required="required" placeholder="Ciudad de la obra" style="background:#ffffff; border:1px solid oklch(84% 0.012 250); border-radius:4px; padding:13px 14px; color:oklch(24% 0.02 260); font-size:16px; outline:none; transition:border-color 160ms ease, box-shadow 160ms ease;" style-focus="border-color:oklch(45% 0.20 260); box-shadow:0 0 0 3px oklch(45% 0.20 260 / 0.14)" />
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px;">
+              <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(42% 0.015 260);">PRODUCTO DE INTERÉS *</span>
+              <select name="producto" required="required" style="background:#ffffff; border:1px solid oklch(84% 0.012 250); border-radius:4px; padding:13px 14px; color:oklch(24% 0.02 260); font-size:16px; outline:none; transition:border-color 160ms ease, box-shadow 160ms ease;" style-focus="border-color:oklch(45% 0.20 260); box-shadow:0 0 0 3px oklch(45% 0.20 260 / 0.14)">
+                <sc-for list="{{ nombresProductos }}" as="n" hint-placeholder-count="6">
+                  <option value="{{ n }}">{{ n }}</option>
+                </sc-for>
+              </select>
+            </label>
+          </div>
+          <label style="display:flex; flex-direction:column; gap:8px;">
+            <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(42% 0.015 260);">CANTIDAD Y MEDIDAS *</span>
+            <textarea name="cantidad" required="required" rows="4" placeholder="Ej: 40 láminas UPVC cresta alta de 6.5 m, más caballetes y tornillería." style="background:#ffffff; border:1px solid oklch(84% 0.012 250); border-radius:4px; padding:13px 14px; color:oklch(24% 0.02 260); font-size:16px; outline:none; resize:vertical; line-height:1.6; transition:border-color 160ms ease, box-shadow 160ms ease;" style-focus="border-color:oklch(45% 0.20 260); box-shadow:0 0 0 3px oklch(45% 0.20 260 / 0.14)"></textarea>
+          </label>
+          <button type="submit" style="background:oklch(30% 0.13 262); color:#ffffff; font-weight:700; font-size:17px; padding:16px 24px; border:none; border-radius:4px; cursor:pointer; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(38% 0.16 262)" style-active="transform:scale(0.97)">Enviar solicitud por correo</button>
+          <p style="{{ avisoStyle }}">{{ aviso }}</p>
+          <p style="margin:0; font-size:13.5px; line-height:1.6; color:oklch(52% 0.015 260);">Al enviar se abre tu gestor de correo con la solicitud lista. ¿Prefieres respuesta inmediata? Escríbenos por WhatsApp.</p>
+        </form>
+      </div>
+    </main>
+  </sc-if>
+
+  <footer style="border-top:4px solid oklch(55% 0.22 27); background:oklch(30% 0.13 262); color:#ffffff;">
+    <div class="tl-foot" style="max-width:1240px; margin:0 auto; padding:40px 20px; display:flex; gap:28px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <img src="assets/logo-tubolam.png" alt="" style="width:52px; height:52px; object-fit:contain; background:#ffffff; border-radius:6px; padding:4px;" />
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <span style="font-size:16px; font-weight:800; letter-spacing:0.02em;">TUBOLAM DE LA COSTA SAS</span>
+          <span style="font-size:14px; color:oklch(88% 0.02 262);">Láminas, perfilería y tubería en acero. Despachos a toda Colombia.</span>
+          <span style="font-size:13.5px; color:oklch(82% 0.03 262);">Empresas aliadas: Comercializadora Todo Hierros S.A.S y Materiales FM.</span>
+        </div>
+      </div>
+      <div style="display:flex; gap:24px; flex-wrap:wrap; font-size:14.5px; font-weight:600;">
+        <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="color:#ffffff;" style-hover="color:oklch(80% 0.14 30)">WhatsApp {{ telFormateado }}</a>
+        <a href="{{ mailtoDirecto }}" style="color:#ffffff;" style-hover="color:oklch(80% 0.14 30)">{{ correo }}</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="tl-chatwrap" style="position:fixed; right:20px; bottom:20px; z-index:60; display:flex; flex-direction:column; align-items:flex-end; gap:12px;">
+    <div class="tl-chat" data-open="{{ chatOpenAttr }}" aria-hidden="{{ chatAriaHidden }}" style="{{ chatPanelStyle }}">
+      <div style="background:oklch(30% 0.13 262); color:#ffffff; padding:16px 18px; display:flex; align-items:center; gap:12px; flex:0 0 auto;">
+        <img src="assets/logo-tubolam.png" alt="" style="width:38px; height:38px; object-fit:contain; background:#ffffff; border-radius:4px; padding:3px;" />
+        <div style="display:flex; flex-direction:column; gap:3px; flex:1;">
+          <span style="font-size:15px; font-weight:800; letter-spacing:0.01em;">Asesor Tubolam</span>
+          <span style="font-family:'Roboto Mono', monospace; font-size:9.5px; letter-spacing:0.14em; color:oklch(90% 0.03 250);"><span class="tl-estado-dot" style="{{ chatDotStyle }}"></span>{{ chatEstado }}</span>
+        </div>
+        <button onClick="{{ reiniciarChat }}" aria-label="Empezar de nuevo" style="background:none; border:1px solid oklch(100% 0 0 / 0.34); color:#ffffff; font-family:'Roboto Mono', monospace; font-size:9.5px; letter-spacing:0.12em; font-weight:600; padding:7px 9px; border-radius:3px; cursor:pointer; transition:background 160ms ease;" style-hover="background:oklch(100% 0 0 / 0.14)">REINICIAR</button>
+      </div>
+
+      <div ref="{{ chatScrollRef }}" style="flex:1 1 auto; min-height:96px; overflow-y:auto; padding:18px; display:flex; flex-direction:column; gap:12px; background:oklch(98% 0.003 250);">
+        <sc-for list="{{ chatLog }}" as="m" hint-placeholder-count="2">
+          <div style="{{ m.wrap }}">
+            <span style="{{ m.bubble }}">{{ m.text }}</span>
+          </div>
+        </sc-for>
+        <sc-if value="{{ chatEscribiendo }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; justify-content:flex-start;" aria-label="El asesor está escribiendo">
+            <span class="tl-typing"><i></i><i></i><i></i></span>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="flex:0 0 auto; border-top:1px solid oklch(88% 0.01 250); background:#ffffff; padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px;">
+        <span style="font-family:'Roboto Mono', monospace; font-size:9.5px; font-weight:600; letter-spacing:0.16em; color:oklch(52% 0.015 260);">{{ chatHintOpciones }}</span>
+        <div style="display:flex; flex-direction:column; gap:8px; max-height:152px; overflow-y:auto;">
+          <sc-for list="{{ chatOpciones }}" as="o" hint-placeholder-count="4">
+            <button onClick="{{ o.go }}" style="text-align:left; background:#ffffff; border:1.5px solid oklch(88% 0.01 250); border-radius:4px; padding:11px 13px; cursor:pointer; font-size:14.5px; font-weight:600; color:oklch(30% 0.13 262); line-height:1.4; flex:0 0 auto; transition:border-color 160ms ease, background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="border-color:oklch(45% 0.20 260); background:oklch(97% 0.01 258)" style-active="transform:scale(0.98)">{{ o.label }}</button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ chatMostrarWa }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ chatWa }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; flex:0 0 auto; text-align:center; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:13px 16px; border-radius:4px; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Seguir por WhatsApp</span></a>
+          <sc-if value="{{ fueraDeHorario }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size:12.5px; line-height:1.45; color:oklch(48% 0.015 260); text-align:center;">Estamos fuera de horario. Déjanos tu mensaje y te respondemos el siguiente día hábil desde las 8:00 a.m.</span>
+          </sc-if>
+        </sc-if>
+      </div>
+    </div>
+
+    <button onClick="{{ toggleChat }}" aria-label="Abrir asistente" aria-expanded="{{ chatAbierto }}" style="{{ chatBotonStyle }}" style-active="transform:scale(0.94)">
+      <sc-if value="{{ chatAbierto }}" hint-placeholder-val="{{ false }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </sc-if>
+      <sc-if value="{{ chatCerrado }}" hint-placeholder-val="{{ true }}">
+        <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"></path></svg>
+      </sc-if>
+    </button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;573046516089&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;},&quot;correo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;siralexbadillo@gmail.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;}}">
+const CATS = {
+  upvc: "CUBIERTA UPVC",
+  acero: "LÁMINA Y PERFILERÍA",
+  tuberia: "TUBERÍA EN ACERO"
+};
+
+const RES_IDS = {
+  "assets/upvc-cresta-alta.webp": "p1",
+  "assets/upvc-cresta-baja.webp": "p2",
+  "assets/upvc-colonial.webp": "p3",
+  "assets/accesorios-upvc-cresta.webp": "p4",
+  "assets/accesorios-upvc-colonial.webp": "p5",
+  "assets/lamina-mastermil.webp": "p6",
+  "assets/lamina-arquitectonica.webp": "p7",
+  "assets/metaloza-galvalume.webp": "p8",
+  "assets/canuelas-galvalume.webp": "p9",
+  "assets/lamina-galvalume.webp": "p10",
+  "assets/perfiles-c.webp": "p11",
+  "assets/tuberia-acero.webp": "p12"
+};
+
+function RES(ruta) {
+  const id = RES_IDS[ruta];
+  const tabla = typeof window !== "undefined" ? window.__resources : null;
+  return id && tabla && tabla[id] ? tabla[id] : ruta;
+}
+
+const PRODUCTOS = [
+  { id: "upvc-alta", chip: "ESPESOR 2 mm", chip2: "LARGO 11.80 m", cota: "ANCHO ÚTIL 1.03 m", cat: "upvc", nombre: "Lámina UPVC Cresta Alta", img: "assets/upvc-cresta-alta.webp", destacado: true,
+    resumen: "Perfil de cresta alta para grandes luces y pendientes bajas. No se corroe con la brisa salina.",
+    specs: [["ESPESOR","2 mm"],["ANCHO TOTAL","1.13 m"],["ANCHO ÚTIL","1.03 m"],["LARGO ESTÁNDAR","11.80 m"],["ESPECIALES","Largos personalizados"]] },
+  { id: "upvc-baja", chip: "ESPESOR 2.5 mm", chip2: "LARGO 11.80 m", cota: "ANCHO ÚTIL 1 m", cat: "upvc", nombre: "Lámina UPVC Cresta Baja", img: "assets/upvc-cresta-baja.webp", destacado: false,
+    resumen: "Mayor espesor y perfil bajo: ideal para cubiertas residenciales y cerramientos.",
+    specs: [["ESPESOR","2.5 mm"],["ANCHO TOTAL","1.07 m"],["ANCHO ÚTIL","1 m"],["LARGO ESTÁNDAR","11.80 m"],["ESPECIALES","Largos personalizados"]] },
+  { id: "upvc-colonial", chip: "ESPESOR 2 mm", chip2: "LARGO 11.80 m", cota: "ANCHO ÚTIL 0.95 m", cat: "upvc", nombre: "Lámina UPVC Colonial Española", img: "assets/upvc-colonial.webp", destacado: true,
+    resumen: "Acabado teja tradicional en terracota, con el peso y la duración del UPVC.",
+    specs: [["COLOR","Terracota (teja tradicional)"],["ESPESOR","2 mm"],["ANCHO TOTAL","1.07 m"],["ANCHO ÚTIL","0.95 m"],["LARGO ESTÁNDAR","11.80 m"]] },
+  { id: "acc-cresta", chip: "ANTICORROSIÓN", chip2: "CRESTA ALTA Y BAJA", cota: "", cat: "upvc", nombre: "Accesorios de instalación UPVC · Cresta", img: "assets/accesorios-upvc-cresta.webp", destacado: false,
+    resumen: "Todo lo que sella y fija la cubierta de cresta alta y baja.",
+    specs: [["INCLUYE","Caballetes, uniones, limatesas"],["FIJACIÓN","Tornillos con arandela anticorrosión"],["REMATES","Terminaciones y selladores"],["USO","Climas húmedos y salinos"]] },
+  { id: "acc-colonial", chip: "ANTICORROSIÓN", chip2: "SOLO PERFIL COLONIAL", cota: "", cat: "upvc", nombre: "Accesorios de instalación UPVC · Colonial", img: "assets/accesorios-upvc-colonial.webp", destacado: false,
+    resumen: "Caballetes y remates diseñados para el perfil colonial español.",
+    specs: [["INCLUYE","Caballetes (crestas) y uniones"],["FIJACIÓN","Tornillos especiales con arandela"],["REMATES","Limatesas, terminaciones, selladores"],["COMPATIBLE","Solo perfil colonial"]] },
+
+  { id: "mastermil", chip: "CAL. 33 A 26", chip2: "PINTURA 20 µ + 10 µ", cota: "", cat: "acero", nombre: "Lámina Prepintada Mastermil", img: "assets/lamina-mastermil.webp", destacado: true,
+    resumen: "Acabado poliéster resistente a UV y corrosión, en varios colores bajo consulta.",
+    specs: [["CALIBRES","33 ≈ 0.25 mm · 30 ≈ 0.30-0.34 mm"],["","28 ≈ 0.37 mm · 26 ≈ 0.45-0.49 mm"],["PINTURA","20 µ exterior + 10 µ interior"],["ESPECIALES","Cortes en largo y ancho"]] },
+  { id: "arquitectonica", chip: "CAL. 33 A 26", chip2: "COLORES BAJO CONSULTA", cota: "", cat: "acero", nombre: "Lámina Prepintada Arquitectónica", img: "assets/lamina-arquitectonica.webp", destacado: true,
+    resumen: "Para fachadas y techos donde el color y el acabado importan tanto como la protección.",
+    specs: [["CALIBRES","33 a 26"],["PINTURA","20 µ exterior + 10 µ interior"],["COLORES","Varios bajo consulta"],["USO","Residencial, comercial, industrial"]] },
+  { id: "metaloza", chip: "0.70 mm · CAL. 22", chip2: "LARGO 6 m", cota: "ANCHO 1.07 m", cat: "acero", nombre: "Lámina Metal-Losa Galvalume", img: "assets/metaloza-galvalume.webp", destacado: true,
+    resumen: "Lámina estructural para entrepiso y cubierta, recubrimiento AZ120.",
+    specs: [["ESPESOR","0.70 mm (cal. 22) · 0.65 mm"],["ANCHO","1.07 m"],["LARGO ESTÁNDAR","6 m"],["RECUBRIMIENTO","AZ120 · Dureza grado 40"],["ESPECIALES","Cortes a medida en longitud"]] },
+  { id: "canuelas", chip: "CAL. 26 Y 24", chip2: "LARGO 6 m", cota: "", cat: "acero", nombre: "Cañuelas Galvalume cal. 26 y 24", img: "assets/canuelas-galvalume.webp", destacado: true,
+    resumen: "Canal de aguas en galvalume, listo para instalar o cortado a la longitud de tu obra.",
+    specs: [["CALIBRE 26","0.45 – 0.49 mm · ≈ 3 kg"],["CALIBRE 24","0.53 – 0.57 mm · ≈ 4 kg"],["LARGO ESTÁNDAR","6 m"],["ESPECIALES","Cortes a medida en longitud"]] },
+  { id: "galvalume", chip: "CAL. 26 Y 24", chip2: "ZINC-ALUMINIO", cota: "FORMATO 2 × 1 m", cat: "acero", nombre: "Lámina Galvalume cal. 26 y 24", img: "assets/lamina-galvalume.webp", destacado: false,
+    resumen: "Formato 2 × 1 m para puertas, cerramientos y paneles pequeños.",
+    specs: [["CALIBRE 26","0.45 – 0.49 mm"],["CALIBRE 24","0.53 – 0.57 mm"],["FORMATO","2 × 1 m"],["RECUBRIMIENTO","Galvalume zinc-aluminio (AZ)"],["ESPECIALES","Cortes en largo y ancho"]] },
+  { id: "perfiles", chip: "CAL. 14 A 20", chip2: "LARGO 6 m", cota: "ALTURA 100 – 300 mm", cat: "acero", nombre: "Perfiles C Galvanizados", img: "assets/perfiles-c.webp", destacado: true,
+    resumen: "Perfil C para montantes, marcos en steel frame y correas de techo y pared.",
+    specs: [["CALIBRES","Comunes 14 a 20"],["ALTURAS","100 – 300 mm"],["LARGO ESTÁNDAR","6 m"],["ESPECIALES","Cortes y perforaciones a pedido"]] },
+
+  { id: "tuberia-costura", chip: "SCH 10 – XXS", chip2: "LARGO 6 A 12 m", cota: 'Ø 2" A 42"', cat: "tuberia", nombre: "Tubería con costura", img: "assets/tuberia-acero.webp", destacado: true,
+    resumen: "Soldada de alta calidad para baja y media presión, conducción general y estructura.",
+    specs: [["DIÁMETROS",'2" a 42"'],["SCHEDULES","SCH 10 a XXS"],["LARGO","6 a 12 m"],["ESPECIALES","Cortes a medida"]] }
+];
+
+const CHAT = {
+  root: { bot: "Hola. Soy el asistente de Tubolam de la Costa. ¿Con qué te ayudo hoy?", opts: [
+    ["Cubierta UPVC", "upvc"], ["Lámina y perfilería", "acero"], ["Tubería en acero", "tuberia"],
+    ["Precios, cortes y despacho", "logistica"], ["Quiénes son ustedes", "grupo"]] },
+
+  upvc: { bot: "Manejamos tres perfiles en UPVC y todos sus accesorios. ¿Qué te interesa?", opts: [
+    ["No sé qué perfil me sirve", "upvc_guia"], ["Cresta alta", "upvc_alta"], ["Cresta baja", "upvc_baja"],
+    ["Colonial española", "upvc_col"], ["Accesorios de instalación", "upvc_acc"], ["Volver al inicio", "root"]] },
+  upvc_guia: { bot: "Regla corta: pendiente baja o luces grandes, cresta alta (2 mm, útil 1.03 m). Techo de casa o cerramiento, cresta baja (2.5 mm, más rígida). Si quieres el look de teja de barro, colonial española.", opts: [
+    ["Cresta alta", "upvc_alta"], ["Cresta baja", "upvc_baja"], ["Colonial española", "upvc_col"]] },
+  upvc_alta: { bot: "Cresta alta: 2 mm, ancho total 1.13 m, útil 1.03 m, largo estándar 11.80 m y largos especiales bajo pedido. No se corroe con la brisa salina.", wa: "Hola, quiero cotizar lámina UPVC cresta alta.", opts: [
+    ["Ver accesorios de cresta", "upvc_acc"], ["¿Cómo calculo cuántas van?", "upvc_calculo"], ["Volver al inicio", "root"]] },
+  upvc_baja: { bot: "Cresta baja: 2.5 mm, ancho total 1.07 m, útil 1 m, largo estándar 11.80 m. Más rígida y con mejor acabado en cubierta residencial.", wa: "Hola, quiero cotizar lámina UPVC cresta baja.", opts: [
+    ["Ver accesorios de cresta", "upvc_acc"], ["¿Cómo calculo cuántas van?", "upvc_calculo"], ["Volver al inicio", "root"]] },
+  upvc_col: { bot: "Colonial española: acabado teja terracota, 2 mm, ancho total 1.07 m, útil 0.95 m, largo estándar 11.80 m. Lleva caballetes y remates propios del perfil.", wa: "Hola, quiero cotizar lámina UPVC colonial española.", opts: [
+    ["Accesorios colonial", "upvc_acc"], ["Volver al inicio", "root"]] },
+  upvc_acc: { bot: "Despachamos caballetes, uniones, limatesas, terminaciones, selladores y tornillería con arandela anticorrosión. Hay juego para cresta y juego para colonial: no son intercambiables.", wa: "Hola, quiero cotizar accesorios de instalación UPVC.", opts: [
+    ["Volver a UPVC", "upvc"], ["Volver al inicio", "root"]] },
+  upvc_calculo: { bot: "Pásanos largo y ancho del techo más la pendiente. Con el ancho útil de cada perfil calculamos número de láminas, traslapos y accesorios, y te decimos si un largo especial te ahorra material.", wa: "Hola, tengo las medidas de mi techo y quiero que me calculen el material.", opts: [
+    ["Volver al inicio", "root"]] },
+
+  acero: { bot: "En acero manejamos lámina y perfilería. ¿Cuál miramos?", opts: [
+    ["Prepintada Mastermil", "ac_master"], ["Prepintada arquitectónica", "ac_arq"], ["Metal-Losa Galvalume", "ac_metal"],
+    ["Cañuelas y lámina galvalume", "ac_galva"], ["Perfiles C", "ac_perfiles"], ["Volver al inicio", "root"]] },
+  ac_master: { bot: "Mastermil prepintada: calibres 33, 30, 28 y 26, pintura 20 µ exterior y 10 µ interior, varios colores bajo consulta. Cortamos largo y ancho.", wa: "Hola, quiero cotizar lámina prepintada Mastermil.", opts: [["Ver arquitectónica", "ac_arq"], ["Volver al inicio", "root"]] },
+  ac_arq: { bot: "Arquitectónica: calibres 33 a 26 con el mismo esquema de pintura, pensada para fachada y cubierta a la vista. Colores bajo consulta.", wa: "Hola, quiero cotizar lámina prepintada arquitectónica.", opts: [["Ver Mastermil", "ac_master"], ["Volver al inicio", "root"]] },
+  ac_metal: { bot: "Metal-Losa Galvalume: 0.70 mm (cal. 22) y 0.65 mm, ancho 1.07 m, largo estándar 6 m, recubrimiento AZ120 dureza grado 40. Sirve para entrepiso y cubierta.", wa: "Hola, quiero cotizar lámina Metal-Losa Galvalume.", opts: [["Cortes a la medida", "log_cortes"], ["Volver al inicio", "root"]] },
+  ac_galva: { bot: "Cañuelas en calibre 26 (0.45–0.49 mm) y 24 (0.53–0.57 mm), largo 6 m. Lámina galvalume plana en formato 2 × 1 m para puertas, cerramientos y paneles.", wa: "Hola, quiero cotizar cañuelas o lámina galvalume.", opts: [["Cortes a la medida", "log_cortes"], ["Volver al inicio", "root"]] },
+  ac_perfiles: { bot: "Perfiles C galvanizados: calibres 14 a 20, alturas 100 a 300 mm, largo estándar 6 m, con perforaciones a pedido. Perfil Z no lo manejamos.", wa: "Hola, quiero cotizar perfiles C galvanizados.", opts: [["Cortes a la medida", "log_cortes"], ["Volver al inicio", "root"]] },
+
+  tuberia: { bot: "La línea de inventario es tubería con costura, de 2\" a 42\". ¿Qué necesitas saber?", opts: [
+    ["Diámetros y schedules", "tub_medidas"], ["¿Para qué aplica?", "tub_uso"], ["Necesito sin costura", "tub_sin"], ["Volver al inicio", "root"]] },
+  tub_medidas: { bot: "Diámetros de 2\" a 42\", schedules SCH 10 hasta XXS, largos de 6 a 12 m y cortes a la medida del despiece. Dinos diámetro, schedule y metros.", wa: "Hola, quiero cotizar tubería con costura. Diámetro y schedule:", opts: [["Volver al inicio", "root"]] },
+  tub_uso: { bot: "Con costura va bien en conducción general, baja y media presión, y uso estructural. Si tu proyecto pide alta presión o temperatura extrema, hablamos de sin costura.", opts: [["Necesito sin costura", "tub_sin"], ["Diámetros y schedules", "tub_medidas"], ["Volver al inicio", "root"]] },
+  tub_sin: { bot: "Sin costura no es línea de inventario, pero se consigue bajo pedido especial. Cuéntanos diámetro, schedule y cantidad y te confirmamos tiempo y precio.", wa: "Hola, necesito tubería sin costura bajo pedido. Diámetro y schedule:", opts: [["Volver al inicio", "root"]] },
+
+  logistica: { bot: "¿Qué parte te preocupa?", opts: [
+    ["Cortes a la medida", "log_cortes"], ["Despacho y flete", "log_despacho"], ["Cómo pido precio", "log_precio"], ["¿Venden a persona natural?", "log_natural"], ["Volver al inicio", "root"]] },
+  log_cortes: { bot: "Cortamos largo en todas las referencias y también ancho en lámina. En perfiles C hacemos perforaciones a pedido. Manda el plano o las medidas y calculamos el despiece.", wa: "Hola, necesito material cortado a la medida. Estas son las medidas:", opts: [["Volver al inicio", "root"]] },
+  log_despacho: { bot: "Despachamos a toda Colombia desde la Costa Caribe. El flete se cotiza según volumen y destino, y te lo confirmamos junto con el precio del material.", wa: "Hola, quiero saber el despacho hasta mi ciudad.", opts: [["Volver al inicio", "root"]] },
+  log_precio: { bot: "Necesitamos tres datos: producto, cantidad y medidas. Con eso te devolvemos precio, disponibilidad y tiempo de despacho el mismo día hábil.", wa: "Hola, quiero una cotización. Producto, cantidad y medidas:", opts: [["Volver al inicio", "root"]] },
+  log_natural: { bot: "Vendemos a los dos: constructoras, industria y ferreterías, y también al cliente que está levantando su propio techo. No hay pedido mínimo de catálogo.", wa: "Hola, quiero comprar material para una obra pequeña.", opts: [["Volver al inicio", "root"]] },
+
+  grupo: { bot: "Tubolam de la Costa SAS distribuye lámina, perfilería y tubería en acero, con despacho a toda Colombia. Trabajamos con dos empresas aliadas, Comercializadora Todo Hierros S.A.S y Materiales FM, así que tienes más inventario y respaldo en un solo canal.", opts: [
+    ["Ver el catálogo", "grupo_cat"], ["Hablar con un asesor", "asesor"], ["Volver al inicio", "root"]] },
+  grupo_cat: { bot: "El catálogo completo con fichas técnicas está en la pestaña Catálogo, arriba. Si quieres te lo resumimos por WhatsApp según lo que estés construyendo.", wa: "Hola, quiero que me asesoren con el catálogo.", opts: [["Volver al inicio", "root"]] },
+  asesor: { bot: "Listo. Escríbenos por WhatsApp con producto, cantidad y ciudad, y un asesor te atiende de una. Horario: lunes a viernes 8:00 a.m. a 12:00 m. y 1:00 a 5:00 p.m.", wa: "Hola, quiero hablar con un asesor de Tubolam de la Costa.", opts: [["Volver al inicio", "root"]] }
+};
+
+const FAQS = [
+  { q: "¿Manejan cortes a la medida?", a: "Sí. Todas las referencias salen en largos personalizados, y en lámina también cortamos ancho. En perfiles C hacemos perforaciones a pedido. Pasa el plano o las medidas y calculamos el despiece." },
+  { q: "¿Qué diferencia hay entre UPVC cresta alta y cresta baja?", a: "Cresta alta va en 2 mm con ancho útil de 1.03 m y evacúa más agua: sirve para pendientes bajas y luces mayores. Cresta baja va en 2.5 mm con ancho útil de 1 m, es más rígida y se ve mejor en cubierta residencial." },
+  { q: "¿El UPVC aguanta el clima de la Costa?", a: "Para eso existe. No se oxida con la brisa salina ni se pica con humedad, y los accesorios que despachamos usan tornillería con arandela anticorrosión. Es la línea que más rota en zona costera." },
+  { q: "¿Despachan fuera de la Costa Caribe?", a: "Despachamos a toda Colombia. Coordinamos el flete según volumen y destino; el valor te lo confirmamos junto con la cotización." },
+  { q: "¿Venden a persona natural o solo a empresas?", a: "A ambos. Atendemos constructoras, industria y ferreterías, y también al cliente que está levantando su propio techo. No hay pedido mínimo de catálogo." },
+  { q: "¿Quiénes son Todo Hierros y Materiales FM?", a: "Son nuestras empresas aliadas. Con Comercializadora Todo Hierros S.A.S y Materiales FM ampliamos inventario y respaldo para proyectos grandes; tú cotizas y coordinas todo con Tubolam de la Costa." },
+  { q: "¿Cómo pido una cotización?", a: "Por WhatsApp con el producto y las medidas, o llenando el formulario de contacto. Respondemos con precio, disponibilidad y tiempo de despacho." }
+];
+
+const TABS = ["inicio", "catalogo", "nosotros", "faq", "contacto"];
+
+// Horario de atención en hora de Colombia: L-V 8:00-12:00 y 13:00-17:00
+function enHorario() {
+  try {
+    const partes = new Intl.DateTimeFormat("en-US", { timeZone: "America/Bogota", weekday: "short", hour: "numeric", minute: "numeric", hour12: false }).formatToParts(new Date());
+    const v = (t) => (partes.find((x) => x.type === t) || {}).value;
+    const dia = v("weekday");
+    const min = (parseInt(v("hour"), 10) % 24) * 60 + parseInt(v("minute"), 10);
+    if (dia === "Sat" || dia === "Sun") return false;
+    return (min >= 480 && min < 720) || (min >= 780 && min < 1020);
+  } catch (e) { return true; }
+}
+
+const AZUL = "oklch(30% 0.13 262)";
+const AZUL_VIVO = "oklch(45% 0.20 260)";
+const ROJO = "oklch(55% 0.22 27)";
+const GRIS = "oklch(45% 0.015 260)";
+
+class Component extends DCLogic {
+  state = { tab: "inicio", filtro: "todos", faq: null, aviso: "", movil: typeof window !== "undefined" && window.innerWidth < 860, menu: false, chatAbierto: false, chatNodo: "root", chatLog: [], escribiendo: false, horario: true };
+
+  timers = [];
+
+  chatScrollEl = null;
+
+  componentDidMount() {
+    this.iniciarReveal();
+    // Pestañas con enlace propio: #catalogo, #nosotros, #faq, #contacto
+    this.leerHash = () => {
+      const t = (window.location.hash || "").replace("#", "");
+      const tab = TABS.indexOf(t) >= 0 ? t : "inicio";
+      if (tab !== this.state.tab) this.setState({ tab, menu: false });
+    };
+    this.leerHash();
+    window.addEventListener("hashchange", this.leerHash);
+    window.addEventListener("popstate", this.leerHash);
+    this.setState({ horario: enHorario() });
+    this.relojHorario = setInterval(() => this.setState({ horario: enHorario() }), 60000);
+    this.medir = () => {
+      const movil = window.innerWidth < 860;
+      if (movil !== this.state.movil) this.setState({ movil, menu: false });
+    };
+    this.medir();
+    window.addEventListener("resize", this.medir);
+  }
+
+  componentWillUnmount() {
+    if (this.medir) window.removeEventListener("resize", this.medir);
+    if (this.io) this.io.disconnect();
+    if (this.leerHash) { window.removeEventListener("hashchange", this.leerHash); window.removeEventListener("popstate", this.leerHash); }
+    clearInterval(this.relojHorario);
+    this.timers.forEach(clearTimeout);
+  }
+
+  // Simula que el asesor escribe: puntos animados y respuesta con una pausa proporcional al texto.
+  responder(texto, nodoId) {
+    this.setState({ escribiendo: true });
+    const pausa = Math.min(1600, 550 + texto.length * 9);
+    const t = setTimeout(() => {
+      this.setState((s) => ({ escribiendo: false, chatNodo: nodoId, chatLog: s.chatLog.concat([{ de: "bot", text: texto }]) }));
+    }, pausa);
+    this.timers.push(t);
+  }
+
+  // Aparición al hacer scroll: marca con data-in los [data-reveal] cuando entran en pantalla (una sola vez).
+  iniciarReveal() {
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
+    document.documentElement.classList.add("tl-js");
+    this.io = new IntersectionObserver((entradas) => {
+      entradas.forEach((e) => {
+        if (e.isIntersecting || e.boundingClientRect.top < 0) { e.target.setAttribute("data-in", ""); this.io.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+    this.observarReveal();
+  }
+
+  observarReveal() {
+    if (!this.io) return;
+    requestAnimationFrame(() => {
+      document.querySelectorAll("[data-reveal]:not([data-in])").forEach((el) => this.io.observe(el));
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.tab !== this.state.tab || prevState.filtro !== this.state.filtro) this.observarReveal();
+    if (prevState.chatLog !== this.state.chatLog || prevState.chatAbierto !== this.state.chatAbierto || prevState.escribiendo !== this.state.escribiendo) {
+      requestAnimationFrame(() => {
+        const el = this.chatScrollEl;
+        if (el) el.scrollTop = el.scrollHeight;
+      });
+    }
+  }
+
+  chatElegir(label, id) {
+    if (this.state.escribiendo) return;
+    const nodo = CHAT[id] || CHAT.root;
+    this.setState((s) => ({ chatLog: s.chatLog.concat([{ de: "yo", text: label }]) }));
+    const t = setTimeout(() => this.responder(nodo.bot, id), 250);
+    this.timers.push(t);
+  }
+
+  chatReiniciar() {
+    this.timers.forEach(clearTimeout);
+    this.timers = [];
+    this.setState({ chatNodo: "root", chatLog: [], escribiendo: false });
+    this.responder(CHAT.root.bot, "root");
+  }
+
+  go(tab) {
+    this.setState({ tab, aviso: "", menu: false });
+    if (typeof window !== "undefined") {
+      const url = window.location.pathname + window.location.search + (tab === "inicio" ? "" : "#" + tab);
+      window.history.pushState(null, "", url);
+    }
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  get numero() { return (this.props.whatsapp ?? "573046516089").replace(/[^0-9]/g, ""); }
+  get correo() { return this.props.correo ?? "siralexbadillo@gmail.com"; }
+
+  wa(texto) {
+    return "https://wa.me/" + this.numero + "?text=" + encodeURIComponent(texto);
+  }
+
+  enviar(e) {
+    e.preventDefault();
+    const f = e.target;
+    const g = (n) => (f.elements[n] && f.elements[n].value ? f.elements[n].value.trim() : "—");
+    const cuerpo = [
+      "Nombre: " + g("nombre"),
+      "Empresa: " + g("empresa"),
+      "Correo: " + g("correo"),
+      "Teléfono: " + g("telefono"),
+      "Ciudad: " + g("ciudad"),
+      "Producto de interés: " + g("producto"),
+      "",
+      "Cantidad y medidas:",
+      g("cantidad")
+    ].join("\n");
+    const url = "mailto:" + this.correo +
+      "?subject=" + encodeURIComponent("Solicitud de cotización · " + g("producto")) +
+      "&body=" + encodeURIComponent(cuerpo);
+    window.location.href = url;
+    this.setState({ aviso: "Abrimos tu gestor de correo con la solicitud lista. Si no se abrió, escríbenos por WhatsApp." });
+  }
+
+  renderVals() {
+    const tab = this.state.tab;
+    const tabDefs = [
+      ["inicio", "Inicio"], ["catalogo", "Catálogo"], ["nosotros", "Nosotros"], ["faq", "FAQ"], ["contacto", "Contacto"]
+    ];
+    const tabs = tabDefs.map(([id, label]) => {
+      const activo = tab === id;
+      return {
+        label,
+        go: () => this.go(id),
+        style: "background:" + (activo ? "oklch(45% 0.20 260 / 0.10)" : "transparent") +
+          "; border:none; border-bottom:3px solid " + (activo ? ROJO : "transparent") +
+          "; cursor:pointer; font-size:16px; font-weight:700; padding:10px 14px; border-radius:4px 4px 0 0; transition:color 160ms ease, background 160ms ease, border-color 160ms ease; color:" +
+          (activo ? AZUL : GRIS)
+      };
+    });
+
+    const filtroDefs = [["todos", "Todo"], ["upvc", "Cubierta UPVC"], ["acero", "Lámina y perfilería"], ["tuberia", "Tubería en acero"]];
+    const filtros = filtroDefs.map(([id, label]) => {
+      const activo = this.state.filtro === id;
+      return {
+        label,
+        go: () => this.setState({ filtro: id }),
+        style: "cursor:pointer; font-size:15px; font-weight:700; padding:11px 18px; border-radius:4px; transition:background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1); border:2px solid " +
+          (activo ? AZUL : "oklch(88% 0.01 250)") +
+          "; color:" + (activo ? "#ffffff" : GRIS) +
+          "; background:" + (activo ? AZUL : "#ffffff")
+      };
+    });
+
+    const decorar = (p) => Object.assign({}, p, {
+      img: RES(p.img),
+      catLabel: CATS[p.cat],
+      specs: p.specs.map(([k, v]) => ({ k, v })),
+      wa: this.wa("Hola Tubolam de la Costa, quiero cotizar: " + p.nombre + ".")
+    });
+
+    const visibles = PRODUCTOS.filter((p) => this.state.filtro === "todos" || p.cat === this.state.filtro).map(decorar);
+    const destacados = PRODUCTOS.filter((p) => p.destacado).map(decorar);
+
+    const faqs = FAQS.map((f, i) => {
+      const abierto = this.state.faq === i;
+      return {
+        q: f.q, a: f.a,
+        toggle: () => this.setState({ faq: abierto ? null : i }),
+        iconStyle: "font-family:'Roboto Mono', monospace; font-size:24px; font-weight:600; line-height:1; color:" + ROJO + "; transition:transform 200ms cubic-bezier(0.2,0.8,0.2,1); transform:rotate(" + (abierto ? "45deg" : "0deg") + ")",
+        panelStyle: "grid-template-rows:" + (abierto ? "1fr" : "0fr") + "; opacity:" + (abierto ? "1" : "0")
+      };
+    });
+
+    const tel = this.numero;
+    const telFormateado = tel.length > 10
+      ? "+" + tel.slice(0, tel.length - 10) + " " + tel.slice(-10, -7) + " " + tel.slice(-7, -4) + " " + tel.slice(-4)
+      : tel;
+
+    const movil = this.state.movil;
+    const menu = this.state.menu && movil;
+    const tabsMovil = tabDefs.map(([id, label]) => {
+      const activo = tab === id;
+      return {
+        label,
+        go: () => this.go(id),
+        style: "text-align:left; border:none; border-bottom:1px solid oklch(94% 0.006 250); cursor:pointer; font-size:15px; font-weight:700; padding:13px 16px; border-left:3px solid " +
+          (activo ? ROJO : "transparent") + "; background:" + (activo ? "oklch(45% 0.20 260 / 0.07)" : "#ffffff") +
+          "; color:" + (activo ? AZUL : GRIS)
+      };
+    });
+
+    const nodo = CHAT[this.state.chatNodo] || CHAT.root;
+    const abierto = this.state.chatAbierto;
+    const chatLog = this.state.chatLog.map((m) => {
+      const mio = m.de === "yo";
+      return {
+        text: m.text,
+        wrap: "display:flex; justify-content:" + (mio ? "flex-end" : "flex-start"),
+        bubble: "max-width:86%; font-size:14.5px; line-height:1.55; padding:11px 14px; border-radius:" +
+          (mio ? "10px 10px 2px 10px" : "10px 10px 10px 2px") +
+          "; background:" + (mio ? AZUL : "#ffffff") +
+          "; color:" + (mio ? "#ffffff" : "oklch(26% 0.02 260)") +
+          "; border:1px solid " + (mio ? AZUL : "oklch(88% 0.01 250)") +
+          "; font-weight:" + (mio ? "600" : "500") +
+          "; animation:tl-rise 260ms cubic-bezier(0.23,1,0.32,1) both"
+      };
+    });
+
+    return {
+      esMovil: movil,
+      esEscritorio: !movil,
+      menuAbierto: menu,
+      menuEtiqueta: (tabDefs.find(([id]) => id === tab) || tabDefs[0])[1],
+      tabsMovil,
+      toggleMenu: () => this.setState((s) => ({ menu: !s.menu })),
+      franjaStyle: "max-width:1240px; margin:0 auto; padding:8px 16px; display:flex; gap:16px; align-items:center; justify-content:space-between; font-family:'Roboto Mono', monospace; letter-spacing:0.14em; font-weight:500; font-size:" +
+        (movil ? "9.5px" : "11px"),
+      logoStyle: "object-fit:contain; flex:0 0 auto; width:" + (movil ? "34px" : "58px") + "; height:" + (movil ? "34px" : "58px"),
+      marcaStyle: "font-weight:800; letter-spacing:-0.01em; color:" + AZUL + "; font-size:" + (movil ? "15.5px" : "21px"),
+      marcaSubStyle: "font-family:'Roboto Mono', monospace; letter-spacing:0.2em; color:" + ROJO + "; font-weight:600; margin-top:3px; white-space:nowrap; padding-right:3px; font-size:" + (movil ? "7.5px" : "9.5px"),
+      menuBotonStyle: "display:flex; align-items:center; gap:7px; cursor:pointer; padding:9px 12px; border-radius:999px; max-width:150px; border:1px solid " +
+        (menu ? AZUL : "oklch(90% 0.008 250)") + "; background:" + (menu ? AZUL : "oklch(98% 0.003 250)") + "; color:" + (menu ? "#ffffff" : AZUL) +
+        "; transition:background 160ms ease, border-color 160ms ease",
+      menuIconoStyle: "display:flex; align-items:center; justify-content:center; flex:0 0 auto; transition:transform 200ms cubic-bezier(0.23,1,0.32,1); transform:rotate(" + (menu ? "180deg" : "0deg") + ")",
+      chatAbierto: abierto,
+      chatCerrado: !abierto,
+      chatLog,
+      chatScrollRef: (el) => { this.chatScrollEl = el; if (el) el.scrollTop = el.scrollHeight; },
+      chatEscribiendo: this.state.escribiendo,
+      chatEstado: this.state.escribiendo ? "ESCRIBIENDO…" : (this.state.horario ? "EN LÍNEA" : "FUERA DE HORARIO"),
+      chatDotStyle: "background:" + (this.state.horario ? "oklch(78% 0.17 150)" : "oklch(80% 0.15 75)"),
+      fueraDeHorario: !this.state.horario,
+      chatOpciones: this.state.escribiendo || this.state.chatLog.length === 0 ? [] : (nodo.opts || []).map(([label, id]) => ({ label, go: () => this.chatElegir(label, id) })),
+      chatHintOpciones: this.state.escribiendo || this.state.chatLog.length === 0 ? "UN MOMENTO…" : nodo.wa ? "ELIGE OTRA OPCIÓN O ESCRÍBENOS" : "ELIGE UNA OPCIÓN",
+      chatMostrarWa: !!nodo.wa && !this.state.escribiendo,
+      chatWa: this.wa(nodo.wa || "Hola Tubolam de la Costa, quiero una cotización."),
+      toggleChat: () => {
+        const abrir = !this.state.chatAbierto;
+        this.setState({ chatAbierto: abrir });
+        if (abrir && this.state.chatLog.length === 0 && !this.state.escribiendo) setTimeout(() => this.responder(CHAT.root.bot, "root"), 200);
+      },
+      reiniciarChat: () => this.chatReiniciar(),
+      chatPanelStyle: "width:min(360px, calc(100vw - 40px)); height:min(520px, calc(100vh - 140px)); background:#ffffff; border:1px solid oklch(84% 0.012 250); border-radius:8px; box-shadow:0 24px 60px oklch(30% 0.13 262 / 0.24); overflow:hidden; display:flex; flex-direction:column; transform-origin:bottom right; visibility:" +
+        (abierto ? "visible" : "hidden") + "; pointer-events:" + (abierto ? "auto" : "none") + "; opacity:" + (abierto ? "1" : "0") + "; transform:" + (abierto ? "none" : "translateY(8px) scale(0.96)"),
+      chatOpenAttr: abierto ? "1" : "0",
+      chatAriaHidden: abierto ? "false" : "true",
+      chatBotonStyle: "width:60px; height:60px; border:none; border-radius:50%; cursor:pointer; background:" + (abierto ? AZUL : ROJO) +
+        "; color:#ffffff; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 30px oklch(30% 0.13 262 / 0.28); transition:background 180ms ease, transform 140ms cubic-bezier(0.2,0.8,0.2,1); animation:" +
+        (abierto ? "none" : "tl-pulse 2.4s cubic-bezier(0.2,0.8,0.2,1) 1.2s 3"),
+      tabs, filtros, faqs, destacados,
+      productosVisibles: visibles,
+      nombresProductos: PRODUCTOS.map((p) => p.nombre).concat(["Otro / varios productos"]),
+      esInicio: tab === "inicio",
+      esCatalogo: tab === "catalogo",
+      esNosotros: tab === "nosotros",
+      esFaq: tab === "faq",
+      esContacto: tab === "contacto",
+      irInicio: (e) => { e.preventDefault(); this.go("inicio"); },
+      verCatalogo: () => this.go("catalogo"),
+      waGeneral: this.wa("Hola Tubolam de la Costa, quiero una cotización."),
+      waTuberiaCostura: this.wa("Hola, quiero cotizar tubería con costura."),
+      waTuberiaSin: this.wa("Hola, quiero cotizar tubería sin costura."),
+      mailtoDirecto: "mailto:" + this.correo,
+      correo: this.correo,
+      telFormateado,
+      enviarFormulario: (e) => this.enviar(e),
+      aviso: this.state.aviso,
+      avisoStyle: "margin:0; font-size:14.5px; font-weight:600; line-height:1.6; color:" + AZUL_VIVO + "; display:" + (this.state.aviso ? "block" : "none")
+    };
+  }
+}
+</script>
+</body>
+</html>
