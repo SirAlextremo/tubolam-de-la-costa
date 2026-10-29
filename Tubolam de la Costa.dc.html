@@ -141,18 +141,32 @@
   .tl-chatwrap { pointer-events:none; }
   .tl-chatwrap > button { pointer-events:auto; }
 
-  /* Botones: elevación al pasar el mouse y respuesta al presionar */
-  .tl-btn { transition:transform 180ms var(--tl-out), box-shadow 220ms ease, background-color 160ms ease !important; position:relative; overflow:hidden; }
-  .tl-btn::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg, transparent 30%, oklch(100% 0 0 / 0.28) 50%, transparent 70%); transform:translateX(-120%); pointer-events:none; }
-  .tl-btn:active { transform:scale(0.97) !important; transition-duration:90ms !important; }
-  .tl-btn:focus-visible, .tl-arrow:focus-visible { outline:3px solid oklch(62% 0.18 260); outline-offset:3px; }
-  .tl-arrow .tl-arr { display:inline-block; transition:transform 200ms var(--tl-out); }
+  /* Botones: elevación, brillo y respuesta al presionar (en todos los botones) */
+  @keyframes tl-shine { 0%, 70% { transform:translateX(-120%); } 100% { transform:translateX(120%); } }
+  @keyframes tl-wiggle { 0%,100% { transform:rotate(0); } 25% { transform:rotate(-12deg) scale(1.12); } 60% { transform:rotate(8deg) scale(1.12); } }
+  .tl-btn { transition:transform 220ms var(--tl-out), box-shadow 260ms ease, background-color 180ms ease, filter 180ms ease !important; position:relative; overflow:hidden; isolation:isolate; }
+  .tl-btn::after { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(110deg, transparent 25%, oklch(100% 0 0 / 0.38) 50%, transparent 75%); transform:translateX(-120%); pointer-events:none; }
+  .tl-btn > * { position:relative; z-index:1; }
+  .tl-btn svg { transition:transform 300ms var(--tl-out); }
+  .tl-shine::after { animation:tl-shine 4.5s ease-in-out 1.5s infinite; }
+  .tl-btn:active { transform:scale(0.96) !important; transition-duration:80ms !important; filter:brightness(0.95); }
+  .tl-tab, .tl-fil, .tl-opt, .tl-faq, .tl-fab { transition:transform 200ms var(--tl-out), background-color 180ms ease, border-color 180ms ease, color 160ms ease, box-shadow 220ms ease !important; }
+  .tl-tab:active, .tl-fil:active, .tl-opt:active { transform:scale(0.96) !important; transition-duration:80ms !important; }
+  .tl-fab:active { transform:scale(0.92) !important; }
+  .tl-faq:active { background:oklch(97% 0.008 258) !important; }
+  .tl-btn:focus-visible, .tl-arrow:focus-visible, .tl-tab:focus-visible, .tl-fil:focus-visible, .tl-opt:focus-visible, .tl-faq:focus-visible, .tl-fab:focus-visible { outline:3px solid oklch(62% 0.18 260); outline-offset:3px; }
+  .tl-arrow .tl-arr { display:inline-block; transition:transform 220ms var(--tl-out); }
   @media (hover: hover) {
-    .tl-btn:hover { transform:translateY(-2px) !important; box-shadow:0 10px 24px oklch(24% 0.05 262 / 0.22) !important; }
-    .tl-btn:hover::after { transform:translateX(120%); transition:transform 650ms var(--tl-out); }
-    .tl-arrow:hover .tl-arr { transform:translateX(4px); }
+    .tl-btn:hover { transform:translateY(-3px) scale(1.02) !important; box-shadow:0 14px 30px oklch(24% 0.05 262 / 0.28) !important; filter:brightness(1.06); }
+    .tl-btn:hover::after { animation:none; transform:translateX(120%); transition:transform 700ms var(--tl-out); }
+    .tl-btn:hover svg { animation:tl-wiggle 520ms ease; }
+    .tl-tab:hover { background-color:oklch(45% 0.20 260 / 0.08) !important; color:oklch(30% 0.13 262) !important; transform:translateY(-1px); }
+    .tl-fil:hover { transform:translateY(-2px); border-color:oklch(45% 0.20 260) !important; box-shadow:0 6px 14px oklch(30% 0.13 262 / 0.12); }
+    .tl-opt:hover { transform:translateX(5px); border-color:oklch(45% 0.20 260) !important; background:oklch(97% 0.01 258) !important; }
+    .tl-faq:hover { background:oklch(98% 0.006 258) !important; }
+    .tl-fab:hover { transform:scale(1.08); box-shadow:0 16px 36px oklch(30% 0.13 262 / 0.36) !important; }
+    .tl-arrow:hover .tl-arr { transform:translateX(6px); }
   }
-
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; transition-delay:0s !important; }
     .tl-js [data-reveal] { transform:none; }
@@ -184,7 +198,7 @@
       <sc-if value="{{ esEscritorio }}" hint-placeholder-val="{{ true }}">
         <nav style="display:flex; gap:4px; flex-wrap:wrap;">
           <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
-            <button onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</button>
+            <button class="tl-tab" onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</button>
           </sc-for>
         </nav>
       </sc-if>
@@ -195,7 +209,7 @@
 
       <sc-if value="{{ esMovil }}" hint-placeholder-val="{{ false }}">
         <div style="flex:0 0 auto; position:relative;">
-          <button onClick="{{ toggleMenu }}" aria-label="Secciones" style="{{ menuBotonStyle }}">
+          <button class="tl-fil" onClick="{{ toggleMenu }}" aria-label="Secciones" style="{{ menuBotonStyle }}">
             <span style="font-size:13.5px; font-weight:700; white-space:nowrap;">{{ menuEtiqueta }}</span>
             <span style="{{ menuIconoStyle }}">
               <svg width="11" height="7" viewBox="0 0 11 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 5.5 5.5 10 1.5"></path></svg>
@@ -205,7 +219,7 @@
           <sc-if value="{{ menuAbierto }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute; top:calc(100% + 8px); right:0; z-index:70; min-width:206px; background:#ffffff; border:1px solid oklch(88% 0.01 250); border-radius:6px; box-shadow:0 18px 42px oklch(30% 0.13 262 / 0.20); overflow:hidden; display:flex; flex-direction:column; transform-origin:top right; animation:tl-pop 180ms cubic-bezier(0.23,1,0.32,1) both;">
               <sc-for list="{{ tabsMovil }}" as="t" hint-placeholder-count="5">
-                <button onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</button>
+                <button class="tl-tab" onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</button>
               </sc-for>
               <a class="tl-btn" href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; text-align:center; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:14.5px; padding:13px 16px;" style-hover="background:oklch(45% 0.14 150); color:#ffffff"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar por WhatsApp</span></a>
             </div>
@@ -225,7 +239,7 @@
           <h1 class="tl-h1" style="font-size:clamp(40px, 6.2vw, 76px); font-weight:800; line-height:1.02; letter-spacing:-0.025em; margin:0 0 24px; max-width:17ch; color:oklch(24% 0.02 260);">Material de cubierta y acero, despachado a toda Colombia.</h1>
           <p class="tl-lead" style="font-size:19px; line-height:1.65; color:oklch(42% 0.015 260); max-width:58ch; margin:0 0 34px; text-wrap:pretty; font-weight:500;">UPVC anticorrosivo para clima salino, galvalume y prepintada calibre 33 a 24, perfiles C y tubería con costura de 2" a 42". Cortamos a la medida exacta de tu obra.</p>
           <div class="tl-ctas" style="display:flex; gap:14px; flex-wrap:wrap;">
-            <a class="tl-btn" href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:17px; padding:17px 30px; border-radius:4px; box-shadow:0 12px 30px oklch(52% 0.15 150 / 0.24); transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Pedir cotización por WhatsApp</span></a>
+            <a class="tl-btn tl-shine" href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:17px; padding:17px 30px; border-radius:4px; box-shadow:0 12px 30px oklch(52% 0.15 150 / 0.24); transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Pedir cotización por WhatsApp</span></a>
             <button class="tl-btn" onClick="{{ verCatalogo }}" style="background:oklch(30% 0.13 262); color:#ffffff; font-weight:700; font-size:17px; padding:17px 30px; border:none; border-radius:4px; cursor:pointer; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(38% 0.16 262)" style-active="transform:scale(0.97)">Ver catálogo completo</button>
           </div>
           <div class="tl-stats" style="display:flex; flex-wrap:wrap; gap:28px 56px; margin-top:56px; padding-top:26px; border-top:3px solid oklch(30% 0.13 262);">
@@ -385,7 +399,7 @@
 
       <div class="tl-filtros" style="display:flex; gap:8px; flex-wrap:wrap; padding-bottom:24px; border-bottom:2px solid oklch(88% 0.01 250); margin-bottom:32px;">
         <sc-for list="{{ filtros }}" as="f" hint-placeholder-count="4">
-          <button onClick="{{ f.go }}" style="{{ f.style }}" style-active="transform:scale(0.97)">{{ f.label }}</button>
+          <button class="tl-fil" onClick="{{ f.go }}" style="{{ f.style }}">{{ f.label }}</button>
         </sc-for>
       </div>
 
@@ -460,7 +474,7 @@
       <div data-reveal style="display:flex; flex-direction:column; gap:1px; background:oklch(88% 0.01 250); border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden;">
         <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
           <div style="background:#ffffff;">
-            <button onClick="{{ f.toggle }}" style="width:100%; background:none; border:none; text-align:left; cursor:pointer; padding:22px 24px; display:flex; gap:20px; align-items:center; justify-content:space-between; color:oklch(24% 0.02 260); font-size:18px; font-weight:700; transition:color 160ms ease;" style-hover="color:oklch(45% 0.20 260)">
+            <button class="tl-faq" onClick="{{ f.toggle }}" style="width:100%; background:none; border:none; text-align:left; cursor:pointer; padding:22px 24px; display:flex; gap:20px; align-items:center; justify-content:space-between; color:oklch(24% 0.02 260); font-size:18px; font-weight:700; transition:color 160ms ease;" style-hover="color:oklch(45% 0.20 260)">
               <span>{{ f.q }}</span>
               <span style="{{ f.iconStyle }}">+</span>
             </button>
@@ -588,7 +602,7 @@
         <span style="font-family:'Roboto Mono', monospace; font-size:9.5px; font-weight:600; letter-spacing:0.16em; color:oklch(52% 0.015 260);">{{ chatHintOpciones }}</span>
         <div style="display:flex; flex-direction:column; gap:8px; max-height:152px; overflow-y:auto;">
           <sc-for list="{{ chatOpciones }}" as="o" hint-placeholder-count="4">
-            <button onClick="{{ o.go }}" style="text-align:left; background:#ffffff; border:1.5px solid oklch(88% 0.01 250); border-radius:4px; padding:11px 13px; cursor:pointer; font-size:14.5px; font-weight:600; color:oklch(30% 0.13 262); line-height:1.4; flex:0 0 auto; transition:border-color 160ms ease, background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="border-color:oklch(45% 0.20 260); background:oklch(97% 0.01 258)" style-active="transform:scale(0.98)">{{ o.label }}</button>
+            <button class="tl-opt" onClick="{{ o.go }}" style="text-align:left; background:#ffffff; border:1.5px solid oklch(88% 0.01 250); border-radius:4px; padding:11px 13px; cursor:pointer; font-size:14.5px; font-weight:600; color:oklch(30% 0.13 262); line-height:1.4; flex:0 0 auto; transition:border-color 160ms ease, background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="border-color:oklch(45% 0.20 260); background:oklch(97% 0.01 258)" style-active="transform:scale(0.98)">{{ o.label }}</button>
           </sc-for>
         </div>
         <sc-if value="{{ chatMostrarWa }}" hint-placeholder-val="{{ false }}">
@@ -600,7 +614,7 @@
       </div>
     </div>
 
-    <button onClick="{{ toggleChat }}" aria-label="Abrir asistente" aria-expanded="{{ chatAbierto }}" style="{{ chatBotonStyle }}" style-active="transform:scale(0.94)">
+    <button class="tl-fab" onClick="{{ toggleChat }}" aria-label="Abrir asistente" aria-expanded="{{ chatAbierto }}" style="{{ chatBotonStyle }}">
       <sc-if value="{{ chatAbierto }}" hint-placeholder-val="{{ false }}">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
       </sc-if>
