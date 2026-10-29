@@ -57,11 +57,11 @@
 
   /* Aparición al hacer scroll (solo si el JS activó .tl-js; sin JS todo queda visible) */
   /* fill-mode backwards: al terminar, los hover (translate/sombra) siguen funcionando */
-  @keyframes tl-reveal { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+  @keyframes tl-reveal { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
   .tl-js [data-reveal]:not([data-in]) { opacity:0; }
-  .tl-js [data-reveal][data-in] { animation:tl-reveal 600ms var(--tl-out) backwards !important; }
-  .tl-js [data-reveal-group] > [data-reveal]:nth-child(3n+2) { animation-delay:70ms !important; }
-  .tl-js [data-reveal-group] > [data-reveal]:nth-child(3n+3) { animation-delay:140ms !important; }
+  .tl-js [data-reveal][data-in] { animation:tl-reveal 460ms var(--tl-out) backwards !important; }
+  .tl-js [data-reveal-group] > [data-reveal]:nth-child(3n+2) { animation-delay:60ms !important; }
+  .tl-js [data-reveal-group] > [data-reveal]:nth-child(3n+3) { animation-delay:120ms !important; }
 
   /* Panel del chat: siempre montado, se anima con opacity/transform */
   .tl-chat { transition:opacity 180ms ease, transform 240ms var(--tl-out), visibility 0s linear 240ms; }
@@ -122,6 +122,23 @@
   .tl-js [data-reveal]:not([data-in]) .tl-chip, .tl-js [data-reveal]:not([data-in]) .tl-cota { animation:none; }
   @media (max-width: 640px) { .tl-anot { padding:10px; } .tl-chip { font-size:9.5px; padding:5px 8px; } .tl-ctx { font-size:10px; } }
 
+
+  /* El contenedor del chat no debe bloquear toques cuando el panel está cerrado */
+  .tl-chatwrap { pointer-events:none; }
+  .tl-chatwrap > button { pointer-events:auto; }
+
+  /* Botones: elevación al pasar el mouse y respuesta al presionar */
+  .tl-btn { transition:transform 180ms var(--tl-out), box-shadow 220ms ease, background-color 160ms ease !important; position:relative; overflow:hidden; }
+  .tl-btn::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg, transparent 30%, oklch(100% 0 0 / 0.28) 50%, transparent 70%); transform:translateX(-120%); pointer-events:none; }
+  .tl-btn:active { transform:scale(0.97) !important; transition-duration:90ms !important; }
+  .tl-btn:focus-visible, .tl-arrow:focus-visible { outline:3px solid oklch(62% 0.18 260); outline-offset:3px; }
+  .tl-arrow .tl-arr { display:inline-block; transition:transform 200ms var(--tl-out); }
+  @media (hover: hover) {
+    .tl-btn:hover { transform:translateY(-2px) !important; box-shadow:0 10px 24px oklch(24% 0.05 262 / 0.22) !important; }
+    .tl-btn:hover::after { transform:translateX(120%); transition:transform 650ms var(--tl-out); }
+    .tl-arrow:hover .tl-arr { transform:translateX(4px); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; transition-delay:0s !important; }
     .tl-js [data-reveal] { transform:none; }
@@ -159,7 +176,7 @@
       </sc-if>
 
       <sc-if value="{{ esEscritorio }}" hint-placeholder-val="{{ true }}">
-        <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; flex:0 0 auto; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:13px 20px; border-radius:4px; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar por WhatsApp</span></a>
+        <a class="tl-btn" href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; flex:0 0 auto; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:13px 20px; border-radius:4px; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar por WhatsApp</span></a>
       </sc-if>
 
       <sc-if value="{{ esMovil }}" hint-placeholder-val="{{ false }}">
@@ -176,7 +193,7 @@
               <sc-for list="{{ tabsMovil }}" as="t" hint-placeholder-count="5">
                 <button onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</button>
               </sc-for>
-              <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; text-align:center; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:14.5px; padding:13px 16px;" style-hover="background:oklch(45% 0.14 150); color:#ffffff"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar por WhatsApp</span></a>
+              <a class="tl-btn" href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; text-align:center; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:14.5px; padding:13px 16px;" style-hover="background:oklch(45% 0.14 150); color:#ffffff"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar por WhatsApp</span></a>
             </div>
           </sc-if>
         </div>
@@ -194,8 +211,8 @@
           <h1 class="tl-h1" style="font-size:clamp(40px, 6.2vw, 76px); font-weight:800; line-height:1.02; letter-spacing:-0.025em; margin:0 0 24px; max-width:17ch; color:oklch(24% 0.02 260);">Material de cubierta y acero, despachado a toda Colombia.</h1>
           <p class="tl-lead" style="font-size:19px; line-height:1.65; color:oklch(42% 0.015 260); max-width:58ch; margin:0 0 34px; text-wrap:pretty; font-weight:500;">UPVC anticorrosivo para clima salino, galvalume y prepintada calibre 33 a 24, perfiles C y tubería con costura de 2" a 42". Cortamos a la medida exacta de tu obra.</p>
           <div class="tl-ctas" style="display:flex; gap:14px; flex-wrap:wrap;">
-            <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:17px; padding:17px 30px; border-radius:4px; box-shadow:0 12px 30px oklch(52% 0.15 150 / 0.24); transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Pedir cotización por WhatsApp</span></a>
-            <button onClick="{{ verCatalogo }}" style="background:oklch(30% 0.13 262); color:#ffffff; font-weight:700; font-size:17px; padding:17px 30px; border:none; border-radius:4px; cursor:pointer; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(38% 0.16 262)" style-active="transform:scale(0.97)">Ver catálogo completo</button>
+            <a class="tl-btn" href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:17px; padding:17px 30px; border-radius:4px; box-shadow:0 12px 30px oklch(52% 0.15 150 / 0.24); transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Pedir cotización por WhatsApp</span></a>
+            <button class="tl-btn" onClick="{{ verCatalogo }}" style="background:oklch(30% 0.13 262); color:#ffffff; font-weight:700; font-size:17px; padding:17px 30px; border:none; border-radius:4px; cursor:pointer; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(38% 0.16 262)" style-active="transform:scale(0.97)">Ver catálogo completo</button>
           </div>
           <div class="tl-stats" style="display:flex; flex-wrap:wrap; gap:28px 56px; margin-top:56px; padding-top:26px; border-top:3px solid oklch(30% 0.13 262);">
             <div style="display:flex; flex-direction:column; gap:6px;">
@@ -236,7 +253,7 @@
                 <div style="display:flex; flex-direction:column; gap:4px;"><span style="font-family:'Roboto Mono', monospace; font-size:10px; font-weight:600; letter-spacing:0.08em; color:oklch(45% 0.015 260);">DIÁMETROS</span><span style="font-size:16px; font-weight:700; color:oklch(24% 0.02 260);">2" a 42"</span></div>
                 <div style="display:flex; flex-direction:column; gap:4px;"><span style="font-family:'Roboto Mono', monospace; font-size:10px; font-weight:600; letter-spacing:0.08em; color:oklch(45% 0.015 260);">SCHEDULES</span><span style="font-size:16px; font-weight:700; color:oklch(24% 0.02 260);">SCH 10-XXS</span></div>
               </div>
-              <a href="{{ waTuberiaCostura }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:14px 16px; border-radius:3px; text-align:center; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(52% 0.15 150)" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar tubería con costura</span></a>
+              <a class="tl-btn" href="{{ waTuberiaCostura }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:14px 16px; border-radius:3px; text-align:center; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(52% 0.15 150)" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar tubería con costura</span></a>
             </div>
           </article>
           <div data-reveal style="display:flex; flex-direction:column; gap:1px; background:oklch(88% 0.01 250); border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden;">
@@ -249,7 +266,7 @@
               <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.16em; color:oklch(55% 0.22 27);">BAJO PEDIDO</span>
               <h3 style="font-size:19px; font-weight:700; margin:10px 0 8px; color:oklch(24% 0.02 260);">Tubería sin costura</h3>
               <p style="font-size:15px; line-height:1.65; color:oklch(45% 0.015 260); margin:0 0 16px;">No es línea de inventario, pero si tu proyecto la exige la conseguimos. Pregúntanos por diámetro y schedule.</p>
-              <a href="{{ waTuberiaSin }}" target="_blank" rel="noopener" style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(44% 0.13 150);" style-hover="color:oklch(30% 0.13 262)">CONSULTAR DISPONIBILIDAD →</a>
+              <a class="tl-arrow" href="{{ waTuberiaSin }}" target="_blank" rel="noopener" style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(44% 0.13 150);" style-hover="color:oklch(30% 0.13 262)">CONSULTAR DISPONIBILIDAD <span class="tl-arr">→</span></a>
             </div>
           </div>
         </div>
@@ -257,7 +274,7 @@
 
         <div style="display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:30px;">
           <h2 style="font-size:clamp(32px, 4.2vw, 46px); font-weight:800; line-height:1.05; letter-spacing:-0.02em; margin:0; color:oklch(24% 0.02 260);">Lo más pedido</h2>
-          <button onClick="{{ verCatalogo }}" style="background:none; border:none; padding:0; cursor:pointer; font-family:'Roboto Mono', monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; color:oklch(45% 0.20 260);" style-hover="color:oklch(55% 0.22 27)">VER TODO EL CATÁLOGO →</button>
+          <button class="tl-arrow" onClick="{{ verCatalogo }}" style="background:none; border:none; padding:0; cursor:pointer; font-family:'Roboto Mono', monospace; font-size:12px; font-weight:600; letter-spacing:0.16em; color:oklch(45% 0.20 260);" style-hover="color:oklch(55% 0.22 27)">VER TODO EL CATÁLOGO <span class="tl-arr">→</span></button>
         </div>
         <div data-reveal-group style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap:20px;">
           <sc-for list="{{ destacados }}" as="p" hint-placeholder-count="6">
@@ -276,7 +293,7 @@
                 <span style="font-family:'Roboto Mono', monospace; font-size:10px; font-weight:600; letter-spacing:0.18em; color:oklch(45% 0.20 260);">{{ p.catLabel }}</span>
                 <h3 style="font-size:20px; font-weight:700; margin:0; line-height:1.25; color:oklch(24% 0.02 260); letter-spacing:-0.01em;">{{ p.nombre }}</h3>
                 <p style="font-size:15px; line-height:1.6; color:oklch(45% 0.015 260); margin:0 0 4px;">{{ p.resumen }}</p>
-                <a href="{{ p.wa }}" target="_blank" rel="noopener" style="margin-top:auto; font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(44% 0.13 150); border-top:1px solid oklch(88% 0.01 250); padding-top:14px;" style-hover="color:oklch(30% 0.13 262)">COTIZAR ESTE PRODUCTO →</a>
+                <a class="tl-arrow" href="{{ p.wa }}" target="_blank" rel="noopener" style="margin-top:auto; font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(44% 0.13 150); border-top:1px solid oklch(88% 0.01 250); padding-top:14px;" style-hover="color:oklch(30% 0.13 262)">COTIZAR ESTE PRODUCTO <span class="tl-arr">→</span></a>
               </div>
             </article>
           </sc-for>
@@ -358,9 +375,9 @@
         </sc-for>
       </div>
 
-      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap:22px;">
+      <div data-reveal-group style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap:22px;">
         <sc-for list="{{ productosVisibles }}" as="p" hint-placeholder-count="8">
-          <article style="background:#ffffff; border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden; display:flex; flex-direction:column; animation:tl-rise 480ms cubic-bezier(0.23,1,0.32,1) both; transition:border-color 200ms ease, box-shadow 200ms ease;" style-hover="border-color:oklch(45% 0.20 260); box-shadow:0 14px 34px oklch(30% 0.13 262 / 0.12)">
+          <article data-reveal style="background:#ffffff; border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden; display:flex; flex-direction:column; transition:border-color 200ms ease, box-shadow 200ms ease;" style-hover="border-color:oklch(45% 0.20 260); box-shadow:0 14px 34px oklch(30% 0.13 262 / 0.12)">
             <div style="aspect-ratio:16/10; overflow:hidden; background:oklch(96% 0.004 250); position:relative;">
               <img src="{{ p.img }}" alt="{{ p.nombre }}" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 420ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="transform:scale(1.05)" />
               <div class="tl-anot" aria-hidden="true">
@@ -383,7 +400,7 @@
                   </div>
                 </sc-for>
               </dl>
-              <a href="{{ p.wa }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; margin-top:auto; text-align:center; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:14px 18px; border-radius:4px; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar por WhatsApp</span></a>
+              <a class="tl-btn" href="{{ p.wa }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; margin-top:auto; text-align:center; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:14px 18px; border-radius:4px; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Cotizar por WhatsApp</span></a>
             </div>
           </article>
         </sc-for>
@@ -401,7 +418,7 @@
           <p style="font-size:17.5px; line-height:1.75; color:oklch(42% 0.015 260); margin:0 0 18px; max-width:60ch;">Trabajamos en la Costa, donde la sal se come el material barato. Por eso la línea principal es UPVC y galvalume, y por eso insistimos en accesorios de fijación anticorrosión aunque encarezcan un poco la lista.</p>
           <p style="font-size:17.5px; line-height:1.75; color:oklch(42% 0.015 260); margin:0; max-width:60ch;">Pasas medidas, te devolvemos cantidades y precio. Si el corte especial te ahorra material, te lo decimos.</p>
         </div>
-        <div style="display:flex; flex-direction:column; gap:1px; background:oklch(88% 0.01 250); border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden;">
+        <div data-reveal style="display:flex; flex-direction:column; gap:1px; background:oklch(88% 0.01 250); border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden;">
           <div style="background:oklch(98% 0.003 250); padding:26px; border-left:5px solid oklch(30% 0.13 262);">
             <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.18em; color:oklch(45% 0.20 260);">LÍNEA 01</span>
             <h3 style="font-size:19px; font-weight:700; margin:10px 0 8px; color:oklch(24% 0.02 260);">Cubierta UPVC</h3>
@@ -426,7 +443,7 @@
     <main class="tl-page tl-main" style="max-width:880px; margin:0 auto; padding:60px 20px 92px;">
       <p style="font-family:'Roboto Mono', monospace; font-size:12px; font-weight:600; letter-spacing:0.24em; color:oklch(55% 0.22 27); margin:0 0 14px;">PREGUNTAS FRECUENTES</p>
       <h2 style="font-size:clamp(32px, 4.6vw, 52px); font-weight:800; line-height:1.04; letter-spacing:-0.025em; margin:0 0 32px; color:oklch(24% 0.02 260);">Lo que preguntan antes de comprar</h2>
-      <div style="display:flex; flex-direction:column; gap:1px; background:oklch(88% 0.01 250); border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden;">
+      <div data-reveal style="display:flex; flex-direction:column; gap:1px; background:oklch(88% 0.01 250); border:1px solid oklch(88% 0.01 250); border-radius:6px; overflow:hidden;">
         <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
           <div style="background:#ffffff;">
             <button onClick="{{ f.toggle }}" style="width:100%; background:none; border:none; text-align:left; cursor:pointer; padding:22px 24px; display:flex; gap:20px; align-items:center; justify-content:space-between; color:oklch(24% 0.02 260); font-size:18px; font-weight:700; transition:color 160ms ease;" style-hover="color:oklch(45% 0.20 260)">
@@ -469,7 +486,7 @@
           </div>
         </div>
 
-        <form class="tl-form" onSubmit="{{ enviarFormulario }}" style="background:oklch(98% 0.003 250); border:1px solid oklch(88% 0.01 250); border-top:5px solid oklch(30% 0.13 262); border-radius:6px; padding:30px; display:flex; flex-direction:column; gap:18px;">
+        <form data-reveal class="tl-form" onSubmit="{{ enviarFormulario }}" style="background:oklch(98% 0.003 250); border:1px solid oklch(88% 0.01 250); border-top:5px solid oklch(30% 0.13 262); border-radius:6px; padding:30px; display:flex; flex-direction:column; gap:18px;">
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:18px;">
             <label style="display:flex; flex-direction:column; gap:8px;">
               <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(42% 0.015 260);">NOMBRE *</span>
@@ -504,7 +521,7 @@
             <span style="font-family:'Roboto Mono', monospace; font-size:11px; font-weight:600; letter-spacing:0.14em; color:oklch(42% 0.015 260);">CANTIDAD Y MEDIDAS *</span>
             <textarea name="cantidad" required="required" rows="4" placeholder="Ej: 40 láminas UPVC cresta alta de 6.5 m, más caballetes y tornillería." style="background:#ffffff; border:1px solid oklch(84% 0.012 250); border-radius:4px; padding:13px 14px; color:oklch(24% 0.02 260); font-size:16px; outline:none; resize:vertical; line-height:1.6; transition:border-color 160ms ease, box-shadow 160ms ease;" style-focus="border-color:oklch(45% 0.20 260); box-shadow:0 0 0 3px oklch(45% 0.20 260 / 0.14)"></textarea>
           </label>
-          <button type="submit" style="background:oklch(30% 0.13 262); color:#ffffff; font-weight:700; font-size:17px; padding:16px 24px; border:none; border-radius:4px; cursor:pointer; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(38% 0.16 262)" style-active="transform:scale(0.97)">Enviar solicitud por correo</button>
+          <button class="tl-btn" type="submit" style="background:oklch(30% 0.13 262); color:#ffffff; font-weight:700; font-size:17px; padding:16px 24px; border:none; border-radius:4px; cursor:pointer; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(38% 0.16 262)" style-active="transform:scale(0.97)">Enviar solicitud por correo</button>
           <p style="{{ avisoStyle }}">{{ aviso }}</p>
           <p style="margin:0; font-size:13.5px; line-height:1.6; color:oklch(52% 0.015 260);">Al enviar se abre tu gestor de correo con la solicitud lista. ¿Prefieres respuesta inmediata? Escríbenos por WhatsApp.</p>
         </form>
@@ -561,7 +578,7 @@
           </sc-for>
         </div>
         <sc-if value="{{ chatMostrarWa }}" hint-placeholder-val="{{ false }}">
-          <a href="{{ chatWa }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; flex:0 0 auto; text-align:center; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:13px 16px; border-radius:4px; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Seguir por WhatsApp</span></a>
+          <a class="tl-btn" href="{{ chatWa }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; gap:9px; flex:0 0 auto; text-align:center; background:oklch(52% 0.15 150); color:#ffffff; font-weight:700; font-size:15px; padding:13px 16px; border-radius:4px; transition:background 160ms ease, transform 120ms cubic-bezier(0.2,0.8,0.2,1);" style-hover="background:oklch(45% 0.14 150); color:#ffffff" style-active="transform:scale(0.97)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:0 0 auto"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.06 2.6a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.45-9.45 9.45M20.1 3.98A11.3 11.3 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.6-1.47a11.3 11.3 0 0 0 5.85 1.6c6.26 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.31-8.02"/></svg><span>Seguir por WhatsApp</span></a>
           <sc-if value="{{ fueraDeHorario }}" hint-placeholder-val="{{ false }}">
             <span style="font-size:12.5px; line-height:1.45; color:oklch(48% 0.015 260); text-align:center;">Estamos fuera de horario. Déjanos tu mensaje y te respondemos el siguiente día hábil desde las 8:00 a.m.</span>
           </sc-if>
@@ -758,6 +775,7 @@ class Component extends DCLogic {
   componentWillUnmount() {
     if (this.medir) window.removeEventListener("resize", this.medir);
     if (this.io) this.io.disconnect();
+    if (this.mo) this.mo.disconnect();
     if (this.leerHash) { window.removeEventListener("hashchange", this.leerHash); window.removeEventListener("popstate", this.leerHash); }
     clearInterval(this.relojHorario);
     this.timers.forEach(clearTimeout);
@@ -783,12 +801,21 @@ class Component extends DCLogic {
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
     this.observarReveal();
+    // Al cambiar de pestaña se montan elementos nuevos: los detectamos aquí sin depender del ciclo de vida.
+    this.mo = new MutationObserver(() => this.observarReveal());
+    this.mo.observe(document.body, { childList: true, subtree: true });
   }
 
   observarReveal() {
     if (!this.io) return;
     requestAnimationFrame(() => {
-      document.querySelectorAll("[data-reveal]:not([data-in])").forEach((el) => this.io.observe(el));
+      document.querySelectorAll("[data-reveal]:not([data-in]):not([data-obs])").forEach((el) => {
+        el.setAttribute("data-obs", "");
+        this.io.observe(el);
+        // Red de seguridad: si ya está en pantalla, se muestra de una vez.
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) { el.setAttribute("data-in", ""); this.io.unobserve(el); }
+      });
     });
   }
 
